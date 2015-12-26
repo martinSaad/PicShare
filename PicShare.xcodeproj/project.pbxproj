@@ -14,9 +14,6 @@
 		8405BF6A1C0EF019009BB9A7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8405BF681C0EF019009BB9A7 /* LaunchScreen.xib */; };
 		8405BF761C0EF019009BB9A7 /* SqlDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405BF751C0EF019009BB9A7 /* SqlDemoTests.m */; };
 		8405BF821C0EF070009BB9A7 /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405BF811C0EF070009BB9A7 /* Model.m */; };
-		8405BF851C0EF1F4009BB9A7 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405BF841C0EF1F4009BB9A7 /* Student.m */; };
-		8405BFC61C0F2F23009BB9A7 /* ModelSql.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405BFC51C0F2F23009BB9A7 /* ModelSql.m */; };
-		8405BFC91C0F3219009BB9A7 /* StudentSql.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405BFC81C0F3219009BB9A7 /* StudentSql.m */; };
 		84F2E39B1C2AA05C003EAFEF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F2E39A1C2AA05C003EAFEF /* AudioToolbox.framework */; };
 		84F2E39D1C2AA068003EAFEF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F2E39C1C2AA068003EAFEF /* CFNetwork.framework */; };
 		84F2E39F1C2AA073003EAFEF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84F2E39E1C2AA073003EAFEF /* CoreGraphics.framework */; };
@@ -31,6 +28,8 @@
 		84F2E3BD1C2AB975003EAFEF /* tmp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84F2E3BC1C2AB975003EAFEF /* tmp.jpg */; };
 		84F2E3BF1C2AB97A003EAFEF /* superman.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84F2E3BE1C2AB97A003EAFEF /* superman.jpeg */; };
 		84F2E3C21C2ACDB1003EAFEF /* ModelParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F2E3C11C2ACDB1003EAFEF /* ModelParse.m */; };
+		BF2C90EA1C2C635F00481E2A /* PostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2C90E91C2C635F00481E2A /* PostsTableViewController.m */; };
+		BF2C90ED1C2C637300481E2A /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2C90EC1C2C637300481E2A /* PostsTableViewCell.m */; };
 		BF60278B1C2C193A00A294E1 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BF60278A1C2C193A00A294E1 /* libsqlite3.tbd */; };
 		BF60278D1C2C194700A294E1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BF60278C1C2C194700A294E1 /* libz.tbd */; };
 		BF6027931C2C291100A294E1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6027921C2C291100A294E1 /* LoginViewController.m */; };
@@ -41,6 +40,8 @@
 		BF60279F1C2C2DCD00A294E1 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF60279C1C2C2DCD00A294E1 /* FBSDKShareKit.framework */; };
 		BF6027A11C2C2E9D00A294E1 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6027A01C2C2E9D00A294E1 /* ParseFacebookUtils.framework */; };
 		BF6027A31C2C2EBD00A294E1 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6027A21C2C2EBD00A294E1 /* ParseFacebookUtilsV4.framework */; };
+		BF94EDE21C2EE5AB006A0105 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = BF94EDE11C2EE5AB006A0105 /* Constants.m */; };
+		BF94EDE61C2EF40D006A0105 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = BF94EDE51C2EF40D006A0105 /* Post.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,12 +68,6 @@
 		8405BF751C0EF019009BB9A7 /* SqlDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SqlDemoTests.m; sourceTree = "<group>"; };
 		8405BF801C0EF070009BB9A7 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		8405BF811C0EF070009BB9A7 /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
-		8405BF831C0EF1F4009BB9A7 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
-		8405BF841C0EF1F4009BB9A7 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
-		8405BFC41C0F2F23009BB9A7 /* ModelSql.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSql.h; sourceTree = "<group>"; };
-		8405BFC51C0F2F23009BB9A7 /* ModelSql.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelSql.m; sourceTree = "<group>"; };
-		8405BFC71C0F3219009BB9A7 /* StudentSql.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentSql.h; sourceTree = "<group>"; };
-		8405BFC81C0F3219009BB9A7 /* StudentSql.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentSql.m; sourceTree = "<group>"; };
 		84F2E39A1C2AA05C003EAFEF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		84F2E39C1C2AA068003EAFEF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		84F2E39E1C2AA073003EAFEF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -88,6 +83,10 @@
 		84F2E3BE1C2AB97A003EAFEF /* superman.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = superman.jpeg; sourceTree = "<group>"; };
 		84F2E3C01C2ACDB1003EAFEF /* ModelParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelParse.h; sourceTree = "<group>"; };
 		84F2E3C11C2ACDB1003EAFEF /* ModelParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelParse.m; sourceTree = "<group>"; };
+		BF2C90E81C2C635F00481E2A /* PostsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostsTableViewController.h; path = ../PostsTableViewController.h; sourceTree = "<group>"; };
+		BF2C90E91C2C635F00481E2A /* PostsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostsTableViewController.m; path = ../PostsTableViewController.m; sourceTree = "<group>"; };
+		BF2C90EB1C2C637300481E2A /* PostsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostsTableViewCell.h; path = ../PostsTableViewCell.h; sourceTree = "<group>"; };
+		BF2C90EC1C2C637300481E2A /* PostsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostsTableViewCell.m; path = ../PostsTableViewCell.m; sourceTree = "<group>"; };
 		BF60278A1C2C193A00A294E1 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		BF60278C1C2C194700A294E1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		BF6027911C2C291100A294E1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -101,6 +100,11 @@
 		BF60279C1C2C2DCD00A294E1 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		BF6027A01C2C2E9D00A294E1 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		BF6027A21C2C2EBD00A294E1 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		BF94EDE01C2EE5AB006A0105 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		BF94EDE11C2EE5AB006A0105 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		BF94EDE31C2EE83B006A0105 /* ModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelProtocol.h; sourceTree = "<group>"; };
+		BF94EDE41C2EF40D006A0105 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		BF94EDE51C2EF40D006A0105 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,23 +145,7 @@
 		8405BF4D1C0EF019009BB9A7 = {
 			isa = PBXGroup;
 			children = (
-				BF60279A1C2C2DCD00A294E1 /* FBSDKCoreKit.framework */,
-				BF60279B1C2C2DCD00A294E1 /* FBSDKLoginKit.framework */,
-				BF60279C1C2C2DCD00A294E1 /* FBSDKShareKit.framework */,
-				BF60278C1C2C194700A294E1 /* libz.tbd */,
-				BF60278A1C2C193A00A294E1 /* libsqlite3.tbd */,
-				BF6027A21C2C2EBD00A294E1 /* ParseFacebookUtilsV4.framework */,
-				BF6027A01C2C2E9D00A294E1 /* ParseFacebookUtils.framework */,
-				84F2E3AC1C2AA1F6003EAFEF /* Bolts.framework */,
-				84F2E3AD1C2AA1F6003EAFEF /* Parse.framework */,
-				84F2E3A81C2AA0AD003EAFEF /* SystemConfiguration.framework */,
-				84F2E3A61C2AA0A3003EAFEF /* StoreKit.framework */,
-				84F2E3A41C2AA08F003EAFEF /* Security.framework */,
-				84F2E3A21C2AA086003EAFEF /* QuartzCore.framework */,
-				84F2E3A01C2AA07E003EAFEF /* CoreLocation.framework */,
-				84F2E39E1C2AA073003EAFEF /* CoreGraphics.framework */,
-				84F2E39C1C2AA068003EAFEF /* CFNetwork.framework */,
-				84F2E39A1C2AA05C003EAFEF /* AudioToolbox.framework */,
+				BF2C90E71C2C630B00481E2A /* Frameworks */,
 				8405BF581C0EF019009BB9A7 /* SqlDemo */,
 				8405BF721C0EF019009BB9A7 /* SqlDemoTests */,
 				8405BF571C0EF019009BB9A7 /* Products */,
@@ -190,6 +178,10 @@
 				BF6027951C2C29B700A294E1 /* SignUpViewController.m */,
 				BF6027971C2C2B2E00A294E1 /* MainTabBarController.h */,
 				BF6027981C2C2B2E00A294E1 /* MainTabBarController.m */,
+				BF2C90EB1C2C637300481E2A /* PostsTableViewCell.h */,
+				BF2C90EC1C2C637300481E2A /* PostsTableViewCell.m */,
+				BF2C90E81C2C635F00481E2A /* PostsTableViewController.h */,
+				BF2C90E91C2C635F00481E2A /* PostsTableViewController.m */,
 			);
 			path = SqlDemo;
 			sourceTree = "<group>";
@@ -223,16 +215,15 @@
 		8405BF7F1C0EF034009BB9A7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BF94EDE31C2EE83B006A0105 /* ModelProtocol.h */,
 				8405BF801C0EF070009BB9A7 /* Model.h */,
 				8405BF811C0EF070009BB9A7 /* Model.m */,
-				8405BF831C0EF1F4009BB9A7 /* Student.h */,
-				8405BF841C0EF1F4009BB9A7 /* Student.m */,
-				8405BFC41C0F2F23009BB9A7 /* ModelSql.h */,
-				8405BFC51C0F2F23009BB9A7 /* ModelSql.m */,
-				8405BFC71C0F3219009BB9A7 /* StudentSql.h */,
-				8405BFC81C0F3219009BB9A7 /* StudentSql.m */,
 				84F2E3C01C2ACDB1003EAFEF /* ModelParse.h */,
 				84F2E3C11C2ACDB1003EAFEF /* ModelParse.m */,
+				BF94EDE01C2EE5AB006A0105 /* Constants.h */,
+				BF94EDE11C2EE5AB006A0105 /* Constants.m */,
+				BF94EDE41C2EF40D006A0105 /* Post.h */,
+				BF94EDE51C2EF40D006A0105 /* Post.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -245,6 +236,30 @@
 				84F2E3BA1C2AB971003EAFEF /* ashton.jpeg */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		BF2C90E71C2C630B00481E2A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF60279B1C2C2DCD00A294E1 /* FBSDKLoginKit.framework */,
+				BF60279C1C2C2DCD00A294E1 /* FBSDKShareKit.framework */,
+				BF60278C1C2C194700A294E1 /* libz.tbd */,
+				BF60278A1C2C193A00A294E1 /* libsqlite3.tbd */,
+				BF6027A21C2C2EBD00A294E1 /* ParseFacebookUtilsV4.framework */,
+				BF6027A01C2C2E9D00A294E1 /* ParseFacebookUtils.framework */,
+				84F2E3AC1C2AA1F6003EAFEF /* Bolts.framework */,
+				84F2E3AD1C2AA1F6003EAFEF /* Parse.framework */,
+				84F2E3A81C2AA0AD003EAFEF /* SystemConfiguration.framework */,
+				84F2E3A61C2AA0A3003EAFEF /* StoreKit.framework */,
+				84F2E3A41C2AA08F003EAFEF /* Security.framework */,
+				84F2E3A21C2AA086003EAFEF /* QuartzCore.framework */,
+				84F2E3A01C2AA07E003EAFEF /* CoreLocation.framework */,
+				84F2E39E1C2AA073003EAFEF /* CoreGraphics.framework */,
+				84F2E39C1C2AA068003EAFEF /* CFNetwork.framework */,
+				84F2E39A1C2AA05C003EAFEF /* AudioToolbox.framework */,
+				BF60279A1C2C2DCD00A294E1 /* FBSDKCoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,14 +365,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF2C90EA1C2C635F00481E2A /* PostsTableViewController.m in Sources */,
 				BF6027931C2C291100A294E1 /* LoginViewController.m in Sources */,
 				8405BF5F1C0EF019009BB9A7 /* AppDelegate.m in Sources */,
-				8405BFC61C0F2F23009BB9A7 /* ModelSql.m in Sources */,
-				8405BFC91C0F3219009BB9A7 /* StudentSql.m in Sources */,
-				8405BF851C0EF1F4009BB9A7 /* Student.m in Sources */,
+				BF2C90ED1C2C637300481E2A /* PostsTableViewCell.m in Sources */,
 				84F2E3C21C2ACDB1003EAFEF /* ModelParse.m in Sources */,
+				BF94EDE21C2EE5AB006A0105 /* Constants.m in Sources */,
 				BF6027991C2C2B2E00A294E1 /* MainTabBarController.m in Sources */,
 				8405BF5C1C0EF019009BB9A7 /* main.m in Sources */,
+				BF94EDE61C2EF40D006A0105 /* Post.m in Sources */,
 				8405BF821C0EF070009BB9A7 /* Model.m in Sources */,
 				BF6027961C2C29B700A294E1 /* SignUpViewController.m in Sources */,
 			);

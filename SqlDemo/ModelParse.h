@@ -11,4 +11,5 @@
 
 @interface ModelParse : NSObject <ModelProtocol>
 
+
 @end

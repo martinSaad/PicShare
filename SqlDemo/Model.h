@@ -7,26 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Student.h"
 #import <UIKit/UIKit.h>
-
-@protocol ModelProtocol <NSObject>
-
--(void)addStudent:(Student*)st;
--(void)deleteStudent:(Student*)st;
--(Student*)getStudent:(NSString*)stId;
--(NSArray*)getStudents;
--(void)saveImage:(UIImage*)image withName:(NSString*)imageName;
--(UIImage*)getImage:(NSString*)imageName;
-
-@end
-
-
-@protocol GetStudentsListener <NSObject>
-
--(void)done:(NSArray*)data;
-
-@end
+#import <Parse/Parse.h>
+#import "ModelProtocol.h"
 
 
 @interface Model : NSObject{
@@ -35,11 +18,15 @@
 
 +(Model*)instance;
 
--(void)addStudent:(Student*)st;
 
--(void)getStudentsAsynch:(void(^)(NSArray*))blockListener;
--(void)getStudentImage:(Student*)st block:(void(^)(UIImage*))block;
--(void)saveStudentImage:(Student*)st image:(UIImage*)image block:(void(^)(NSError*))block;
+-(void)getFollowingUsersAsync:(void(^)(NSArray*))blockListener;
+-(void)getWhoFollowsMeAsync:(void(^)(NSArray*))blockListener;
+-(void)getPhotos:(PFUser*)st block:(void(^)(NSArray*))block;
+-(void)getLikesOfPhoto:(PFObject*)photo block:(void(^)(NSArray*))block;
+
+
+//saveing type
+//-(void)saveStudentImage:(Student*)st image:(UIImage*)image block:(void(^)(NSError*))block;
 @end
 
 

@@ -7,7 +7,6 @@
 //
 
 #import "Model.h"
-#import <sqlite3.h>
 #import "ModelSql.h"
 #import "ModelParse.h"
 
@@ -33,27 +32,15 @@ static Model* instance = nil;
     return self;
 }
 
--(void)addStudent:(Student*)st{
-    [modelImpl addStudent:st];
-}
--(void)deleteStudent:(Student*)st{
-    [modelImpl deleteStudent:st];
-}
--(Student*)getStudent:(NSString*)stId{
-    return [modelImpl getStudent:stId];
-}
--(NSArray*)getStudents{
-    return [modelImpl getStudents];
-}
 
 
 //Block Asynch implementation
--(void)getStudentsAsynch:(void(^)(NSArray*))blockListener{
-    dispatch_queue_t myQueue =    dispatch_queue_create("myQueueName", NULL);
+-(void)getFollowingUsersAsync:(void(^)(NSArray*))blockListener{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
         //long operation
-        NSArray* data = [modelImpl getStudents];
+        NSArray* data = [modelImpl getFollowingUsers];
         
         //end of long operation - update display in the main Q
         dispatch_queue_t mainQ = dispatch_get_main_queue();
@@ -63,11 +50,27 @@ static Model* instance = nil;
     } );
 }
 
--(void)getStudentImage:(Student*)st block:(void(^)(UIImage*))block{
-    dispatch_queue_t myQueue =    dispatch_queue_create("myQueueName", NULL);
+//Block Asynch implementation
+-(void)getWhoFollowsMeAsync:(void(^)(NSArray*))blockListener{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
-        UIImage* image = [modelImpl getImage:st.imageName];
+        //long operation
+        NSArray* data = [modelImpl getWhoFollowsMe];
+        
+        //end of long operation - update display in the main Q
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            blockListener(data);
+        });
+    } );
+}
+
+-(void)getPhoto:(PFUser*)user block:(void(^)(NSArray*))block{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        NSArray* image = [modelImpl getPhotos:user];
         
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
@@ -76,19 +79,38 @@ static Model* instance = nil;
     } );
 }
 
-
--(void)saveStudentImage:(Student*)st image:(UIImage*)image block:(void(^)(NSError*))block{
-    dispatch_queue_t myQueue =    dispatch_queue_create("myQueueName", NULL);
+-(void)getLikesOfPhoto:(PFObject*)photo block:(void(^)(NSArray*))block{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
-        [modelImpl saveImage:image withName:st.imageName];
+        NSArray* likes = [modelImpl getLikesOfPhoto:photo];
         
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
-            block(nil);
+            block(likes);
         });
     } );
 }
+
+
+
+//
+//
+//
+//
+//
+//-(void)saveStudentImage:(Student*)st image:(UIImage*)image block:(void(^)(NSError*))block{
+//    dispatch_queue_t myQueue =    dispatch_queue_create("myQueueName", NULL);
+//    
+//    dispatch_async(myQueue, ^{
+//        [modelImpl saveImage:image withName:st.imageName];
+//        
+//        dispatch_queue_t mainQ = dispatch_get_main_queue();
+//        dispatch_async(mainQ, ^{
+//            block(nil);
+//        });
+//    } );
+//}
 @end
 
 

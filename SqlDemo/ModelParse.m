@@ -8,6 +8,8 @@
 
 #import "ModelParse.h"
 #import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "Constants.h"
 
 @implementation ModelParse
 
@@ -21,48 +23,70 @@
     return self;
 }
 
--(void)addStudent:(Student*)st{
-    PFObject* obj = [PFObject objectWithClassName:@"Students"];
-    obj[@"stId"] = st.stId;
-    obj[@"fname"] = st.fname;
-    obj[@"lname"] = st.lname;
-    obj[@"phone"] = st.phone;
-    obj[@"imageName"] = st.imageName;
-    [obj save];
-}
-
--(void)deleteStudent:(Student*)st{
-    PFQuery* query = [PFQuery queryWithClassName:@"Students"];
-    [query whereKey:@"stId" equalTo:st.stId];
-    NSArray* res = [query findObjects];
-    if (res.count == 1) {
-        PFObject* obj = [res objectAtIndex:0];
-        [obj delete];
-    }
-}
-
--(Student*)getStudent:(NSString*)stId{
-    Student* student = nil;
-    PFQuery* query = [PFQuery queryWithClassName:@"Students"];
-    [query whereKey:@"stId" equalTo:stId];
-    NSArray* res = [query findObjects];
-    if (res.count == 1) {
-        PFObject* obj = [res objectAtIndex:0];
-        student = [[Student alloc] init:obj[@"stId"] fname:obj[@"fname"] lname:obj[@"lname"] phone:obj[@"phone"] imageName:obj[@"imageName"]];
-    }
-    return student;
-}
-
--(NSArray*)getStudents{
+-(NSArray*)getFollowingUsers{
+    PFUser* currentUser = [PFUser currentUser];
     NSMutableArray* array = [[NSMutableArray alloc] init];
-    PFQuery* query = [PFQuery queryWithClassName:@"Students"];
+    
+    PFQuery* query = [PFQuery queryWithClassName:FOLLOWERS_TABLE];
+    [query whereKey:USER equalTo:currentUser];
     NSArray* res = [query findObjects];
+    
     for (PFObject* obj in res) {
-        Student* student = [[Student alloc] init:obj[@"stId"] fname:obj[@"fname"] lname:obj[@"lname"] phone:obj[@"phone"] imageName:obj[@"imageName"]];
-        [array addObject:student];
+        PFUser* user = [obj objectForKey:FOLLOWING];
+        [array addObject:user];
     }
     return array;
 }
+
+
+-(NSArray*)getWhoFollowsMe{
+    PFUser* currentUser = [PFUser currentUser];
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    
+    PFQuery* query = [PFQuery queryWithClassName:FOLLOWERS_TABLE];
+    [query whereKey:USER equalTo:currentUser];
+    NSArray* res = [query findObjects];
+    
+    for (PFObject* obj in res) {
+        PFUser* user = [obj objectForKey:WHO_FOLLOWS_ME];
+        [array addObject:user];
+    }
+    return array;
+}
+
+-(NSArray*)getPhotos:(PFUser*)user{
+    PFQuery* query = [PFQuery queryWithClassName:USER_TABLE];
+    [query whereKey:OBJECT_ID equalTo:user.objectId];
+    NSArray* res = [query findObjects];
+    
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    for(PFObject* obj in res){
+        PFFile* file = obj[PICTURE];
+        NSData* data = [file getData];
+        UIImage* photo = [UIImage imageWithData:data];
+        [array addObject:photo];
+    }
+    return array;
+}
+
+-(NSArray*)getLikesOfPhoto:(PFObject *)photo{
+    PFQuery* query = [PFQuery queryWithClassName:PHOTO_TABLE];
+    [query whereKey:OBJECT_ID equalTo:photo.objectId];
+    PFObject* res = [query findObjects];
+    
+    NSArray* usersWhoLikedThePhoto = [[NSArray alloc] init];
+    usersWhoLikedThePhoto = res[LIKES];
+    
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    for(PFObject* obj in usersWhoLikedThePhoto){
+        [array addObject:obj];
+    }
+    return array;
+}
+
+
+
+
 
 -(void)saveImage:(UIImage*)image withName:(NSString*)imageName{
     NSData* imageData = UIImageJPEGRepresentation(image,0);
@@ -74,23 +98,37 @@
     [fileobj save];
 }
 
--(UIImage*)getImage:(NSString*)imageName{
-    PFQuery* query = [PFQuery queryWithClassName:@"Images"];
-    [query whereKey:@"imageName" equalTo:imageName];
-    NSArray* res = [query findObjects];
-    UIImage* image = nil;
-    if (res.count == 1) {
-        PFObject* imObj = [res objectAtIndex:0];
-        PFFile* file = imObj[@"file"];
-        NSData* data = [file getData];
-        image = [UIImage imageWithData:data];
+-(void)saveUserDetails:(NSString*)name withEmail:(NSString*)email withGender:(NSString*)gender withPhotoUrl:(NSURL*)photoUrl{
+    
+    PFUser *currentUser = [PFUser currentUser];
+    NSArray* names = [name componentsSeparatedByString:@" "];
+    if (names.count == 2){
+        currentUser[@"first_name"] = [names objectAtIndex:0];
+        currentUser[@"last_name"] = [names objectAtIndex:1];
     }
-    return image;
+    currentUser[@"email"] = email;
+    currentUser[@"gender"] = gender;
 }
 
-
-
-
+- (void)getFacebookUserData {
+    // ...
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            // result is a dictionary with the user's Facebook data
+            NSDictionary *userData = (NSDictionary *)result;
+            
+            NSString *facebookID = userData[@"id"];
+            NSString *name = userData[@"name"];
+            NSString *email = userData[@"email"];
+            NSString *gender = userData[@"gender"];
+            
+            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+            
+            [self saveUserDetails:name withEmail:email withGender:gender withPhotoUrl:pictureURL];
+        }
+    }];
+}
 
 
 

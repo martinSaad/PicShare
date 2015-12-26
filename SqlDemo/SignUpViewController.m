@@ -7,9 +7,9 @@
 //
 
 #import "SignUpViewController.h"
-#import "MainTabBarController.h"
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
-#import <Parse/Parse.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "PostsTableViewController.h"
 
 @interface SignUpViewController ()
 
@@ -34,14 +34,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"facebookLoginSeg"]){
-        [PFFacebookUtils logInInBackgroundWithReadPermissions:@[ @"public_profile", @"email", @"user_photos", @"user_tagged_places" ]  block:^(PFUser *user, NSError *error) {
+        [PFFacebookUtils logInInBackgroundWithReadPermissions:@[ @"public_profile", @"email", @"user_photos"]  block:^(PFUser *user, NSError *error) {
             if (!user) {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
             } else if (user.isNew) {
                 NSLog(@"User signed up and logged in through Facebook!");
             } else {
                 NSLog(@"User logged in through Facebook!");
-                MainTabBarController* mainTabBarVC = segue.destinationViewController;
+                PostsTableViewController* postsVC = segue.destinationViewController;
 
             }
         }];

@@ -7,6 +7,9 @@
 //
 
 #import "LoginViewController.h"
+#import "SignUpViewController.h"
+#import <Parse/Parse.h>
+#import <ParseFacebookUtilsV4/ParseFacebookUtilsV4.h>
 
 @interface LoginViewController ()
 
@@ -36,4 +39,6 @@
 
 - (IBAction)loginBtn:(id)sender {
 }
+
+
 @end
