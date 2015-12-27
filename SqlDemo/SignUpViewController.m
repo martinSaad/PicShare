@@ -10,6 +10,7 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "PostsTableViewController.h"
+#import "Model.h"
 
 @interface SignUpViewController ()
 
@@ -27,6 +28,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)signUp{
+    
+}
+
 
 #pragma mark - Navigation
 
@@ -41,13 +46,17 @@
                 NSLog(@"User signed up and logged in through Facebook!");
             } else {
                 NSLog(@"User logged in through Facebook!");
-                PostsTableViewController* postsVC = segue.destinationViewController;
+                //PostsTableViewController* postsVC = segue.destinationViewController;
 
             }
         }];
     }
     
-    
+    else if([segue.identifier isEqualToString:@"signUpSecondSeg"]){
+        [[Model instance] signUp:self.firstName.text andLname:self.lastName.text andUsername:self.userName.text andPassword:self.password.text andEmail:self.userName.text andPhone:self.phone.text block:^(NSError * error) {
+            
+        }];
+    }
     
     
     

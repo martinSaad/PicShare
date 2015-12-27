@@ -55,12 +55,25 @@
 }
 
 -(NSArray*)getPhotos:(PFUser*)user{
-    PFQuery* query = [PFQuery queryWithClassName:USER_TABLE];
-    [query whereKey:OBJECT_ID equalTo:user.objectId];
+    PFQuery* query = [PFQuery queryWithClassName:PHOTO_TABLE];
+    [query whereKey:USER equalTo:user];
     NSArray* res = [query findObjects];
     
+    return res;
+}
+
+//test
+-(NSArray*)getPFobjects:(PFUser*)user{
+    PFQuery* query = [PFQuery queryWithClassName:PHOTO_TABLE];
+    [query whereKey:USER equalTo:user];
+    NSArray* res = [query findObjects];
+    
+    return res;
+}
+
+-(NSArray*)getPhotosFromPFobjectArray:(NSArray*)PFobjectArray{
     NSMutableArray* array = [[NSMutableArray alloc] init];
-    for(PFObject* obj in res){
+    for(PFObject* obj in PFobjectArray){
         PFFile* file = obj[PICTURE];
         NSData* data = [file getData];
         UIImage* photo = [UIImage imageWithData:data];
@@ -71,17 +84,16 @@
 
 -(NSArray*)getLikesOfPhoto:(PFObject *)photo{
     PFQuery* query = [PFQuery queryWithClassName:PHOTO_TABLE];
-    [query whereKey:OBJECT_ID equalTo:photo.objectId];
-    PFObject* res = [query findObjects];
+    [query whereKey:OBJECT_ID equalTo:photo];
+    NSArray* res = [query findObjects];
     
-    NSArray* usersWhoLikedThePhoto = [[NSArray alloc] init];
-    usersWhoLikedThePhoto = res[LIKES];
-    
-    NSMutableArray* array = [[NSMutableArray alloc] init];
-    for(PFObject* obj in usersWhoLikedThePhoto){
-        [array addObject:obj];
+    NSMutableArray* likes = [[NSMutableArray alloc]init];
+    for (PFUser* user in res){
+        [likes addObject:user[FIRST_NAME]];
     }
-    return array;
+    
+    
+    return likes;
 }
 
 
@@ -131,8 +143,24 @@
 }
 
 
+-(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone {
+    
+    PFUser *user = [PFUser user];
+    user.username = username;
+    user.password = password;
+    user.email = email;
+    
+    user[PHONE] = phone;
+    user[FIRST_NAME] = fName;
+    user[LAST_NAME] = lName;
+    
+    [user signUp];
+    
+}
 
-
+-(void)signIn:(NSString*)username andPassword:(NSString*)password{
+    [PFUser logInWithUsername:username password:password];
+}
 
 
 

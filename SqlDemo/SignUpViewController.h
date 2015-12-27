@@ -16,5 +16,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *gender;
 @property (weak, nonatomic) IBOutlet UITextField *lastName;
 
-
+-(void)signUp;
 @end

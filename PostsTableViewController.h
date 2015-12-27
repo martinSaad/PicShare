@@ -12,7 +12,7 @@
     NSArray* followingUsers;
     NSArray* photos;
     NSArray* likes;
-    NSArray* posts;
+    NSMutableArray* posts;
 }
 
 @end

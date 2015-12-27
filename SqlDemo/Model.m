@@ -66,7 +66,7 @@ static Model* instance = nil;
     } );
 }
 
--(void)getPhoto:(PFUser*)user block:(void(^)(NSArray*))block{
+-(void)getPhotos:(PFUser*)user block:(void(^)(NSArray*))block{
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
@@ -78,6 +78,20 @@ static Model* instance = nil;
         });
     } );
 }
+
+-(void)getPhotosFromPFobjectArray:(NSArray*)PFobjectArray block:(void(^)(NSArray*))block{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        NSArray* image = [modelImpl getPhotosFromPFobjectArray:PFobjectArray];
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(image);
+        });
+    } );
+}
+
 
 -(void)getLikesOfPhoto:(PFObject*)photo block:(void(^)(NSArray*))block{
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
@@ -92,6 +106,39 @@ static Model* instance = nil;
     } );
 }
 
+
+-(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone block:(void(^)(NSError*))block{
+    
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
+
+    dispatch_async(myQueue, ^{
+        [modelImpl signUp:fName andLname:lName andUsername:username andPassword:password andEmail:email andPhone:phone];
+
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(nil);
+        });
+    } );
+}
+
+
+-(void)signIn:(NSString*)username andPassword:(NSString*)password block:(void(^)(NSError*))block{
+    
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        [modelImpl signIn:username andPassword:password];
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(nil);
+        });
+    } );
+}
+
+-(NSArray*)getPFobjects:(PFUser*)user{
+    return [modelImpl getPhotos:user];
+}
 
 
 //

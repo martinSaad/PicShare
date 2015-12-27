@@ -9,6 +9,7 @@
 #import "PostsTableViewController.h"
 #import "PostsTableViewCell.h"
 #import "Model.h"
+#import "Post.h"
 @interface PostsTableViewController ()
 
 @end
@@ -17,23 +18,68 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    posts = [[NSArray alloc] init];
+    posts = [[NSMutableArray alloc] init];
+    __block NSArray* arr = [[NSArray alloc]init];
     
     [[Model instance] getFollowingUsersAsync:^(NSArray *followingUsersArray) {
+        
+        //create post for all proccess
+        Post* post = [[Post alloc]init];
+        
         followingUsers = followingUsersArray;
         
-        //get photos of each user
         for (PFUser* user in followingUsers){
-            [[Model instance] getPhotos:user block:^(NSArray * photosArray) {
-                photos = photosArray;
+           arr = [[Model instance] getPFobjects:user];
+//            [[Model instance] getPhotos:user block:^(NSArray *pfobjectArr) {
+//                arr = pfobjectArr;
+//            }];
+        }
+        
+        [[Model instance] getPhotosFromPFobjectArray:arr block:^(NSArray *photosArr) {
+            photos = photosArr;
+            [self.tableView reloadData];
+        }];
+        
+        for (PFObject* photo in arr){
+            [[Model instance] getLikesOfPhoto:photo block:^(NSArray *likesArr) {
+                likes = likesArr;
+                [self.tableView reloadData];
             }];
         }
-        //get likes of each photo
         
     }];
     
+
     
-    [self.tableView reloadData];
+
+    
+
+    
+    
+//    [[Model instance] getFollowingUsersAsync:^(NSArray *followingUsersArray) {
+//        followingUsers = followingUsersArray;
+//        
+//        //get photos of each user
+//        for (PFUser* user in followingUsers){
+//            [[Model instance] getPhotos:user block:^(NSArray * photosArray) {
+//                arr = photosArray;
+//                
+//                //get photos
+//                [Model instance] getPhotosFromPFobjectArray:arr block:^(NSArray *photosArr) {
+//                    photos = photosArr;
+//                }
+//                
+//                //get likes
+//                
+//                [self.tableView reloadData];
+//            }];
+//        }
+//        //get likes of each photo
+//        
+//    }];
+    
+    
+    
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -55,7 +101,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return posts.count;
+    return photos.count;
 }
 
 
@@ -63,8 +109,8 @@
     PostsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     int row = indexPath.row;
-    cell.postImageView = [posts objectAtIndex:row];
-    cell.likes = [NSString stringWithFormat:@"%d", [posts count]];
+    cell.postImageView.image = [photos objectAtIndex:row];
+    cell.likes.text = [NSString stringWithFormat:@"%d", [posts count]];
     return cell;
 }
 
