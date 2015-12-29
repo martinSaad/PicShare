@@ -141,23 +141,23 @@ static Model* instance = nil;
 }
 
 
-//
-//
-//
-//
-//
-//-(void)saveStudentImage:(Student*)st image:(UIImage*)image block:(void(^)(NSError*))block{
-//    dispatch_queue_t myQueue =    dispatch_queue_create("myQueueName", NULL);
-//    
-//    dispatch_async(myQueue, ^{
-//        [modelImpl saveImage:image withName:st.imageName];
-//        
-//        dispatch_queue_t mainQ = dispatch_get_main_queue();
-//        dispatch_async(mainQ, ^{
-//            block(nil);
-//        });
-//    } );
-//}
+
+-(PFGeoPoint*)getCurrentLocation{
+    return [modelImpl getCurrentLocation];
+}
+
+-(void)uploadImageAsync:(UIImage*)image block:(void(^)(NSError*))block{
+    dispatch_queue_t myQueue =    dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        [modelImpl uploadImage:image];
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(nil);
+        });
+    } );
+}
 @end
 
 

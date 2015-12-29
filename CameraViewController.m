@@ -7,6 +7,7 @@
 //
 
 #import "CameraViewController.h"
+#import "Model.h"
 
 @implementation CameraViewController
 
@@ -69,6 +70,10 @@
     UIImage* image=[info objectForKey:UIImagePickerControllerOriginalImage];
     
     [imageView setImage:image];
+    
+    [[Model instance]uploadImageAsync:image block:^(NSError *error) {
+        
+    }];
     
     [imagePicker dismissViewControllerAnimated:YES completion:nil];
     

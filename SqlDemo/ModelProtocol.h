@@ -10,7 +10,7 @@
 
 @protocol ModelProtocol <NSObject>
 
--(void)saveImage:(UIImage*)image withName:(NSString*)imageName;
+
 
 -(NSArray*)getPhotos:(PFUser*)user;
 -(NSArray*)getPhotosFromPFobjectArray:(NSArray*)PFobjectArray;
@@ -23,6 +23,8 @@
 -(void)signIn:(NSString*)username andPassword:(NSString*)password;
 -(void)getFacebookUserData;
 -(void)saveUserDetails:(NSString*)name withEmail:(NSString*)email withGender:(NSString*)gender withPhotoUrl:(NSURL*)photoUrl;
+-(PFGeoPoint*)getCurrentLocation;
+-(void)uploadImage:(UIImage*)image;
 
 //test
 -(NSArray*)getPFobjects:(PFUser*)user;

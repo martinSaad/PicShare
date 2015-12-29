@@ -12,9 +12,13 @@
     
     
     UIImagePickerController* imagePicker;
-    
     UIActionSheet* actionSheet;
+    
     IBOutlet UIImageView *imageView;
+
 }
+- (IBAction)addPicture:(id)sender;
+
+
 
 @end

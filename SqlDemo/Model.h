@@ -31,7 +31,8 @@
 -(NSArray*)getPFobjects:(PFUser*)user;
 
 //saveing type
-//-(void)saveStudentImage:(Student*)st image:(UIImage*)image block:(void(^)(NSError*))block;
+-(void)uploadImageAsync:(UIImage*)image block:(void(^)(NSError*))block;
+-(PFGeoPoint*)getCurrentLocation;
 @end
 
 

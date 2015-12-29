@@ -99,8 +99,8 @@
 		BF6027A01C2C2E9D00A294E1 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		BF6027A21C2C2EBD00A294E1 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		BF7BA3E11C31881000EA1121 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
-		BF7BA3E31C326C7F00EA1121 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
-		BF7BA3E41C326C7F00EA1121 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		BF7BA3E31C326C7F00EA1121 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = ../CameraViewController.h; sourceTree = "<group>"; };
+		BF7BA3E41C326C7F00EA1121 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = ../CameraViewController.m; sourceTree = "<group>"; };
 		BF94EDE01C2EE5AB006A0105 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BF94EDE11C2EE5AB006A0105 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		BF94EDE31C2EE83B006A0105 /* ModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelProtocol.h; sourceTree = "<group>"; };
@@ -150,8 +150,6 @@
 		8405BF4D1C0EF019009BB9A7 = {
 			isa = PBXGroup;
 			children = (
-				BF7BA3E31C326C7F00EA1121 /* CameraViewController.h */,
-				BF7BA3E41C326C7F00EA1121 /* CameraViewController.m */,
 				BF2C90E71C2C630B00481E2A /* Frameworks */,
 				8405BF581C0EF019009BB9A7 /* SqlDemo */,
 				8405BF721C0EF019009BB9A7 /* SqlDemoTests */,
@@ -191,6 +189,8 @@
 				BF2C90E91C2C635F00481E2A /* PostsTableViewController.m */,
 				BFD489141C30442900979D5A /* SearchViewController.h */,
 				BFD489151C30442900979D5A /* SearchViewController.m */,
+				BF7BA3E31C326C7F00EA1121 /* CameraViewController.h */,
+				BF7BA3E41C326C7F00EA1121 /* CameraViewController.m */,
 			);
 			path = SqlDemo;
 			sourceTree = "<group>";
@@ -462,7 +462,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -499,7 +499,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -515,6 +515,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SqlDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mnm.PicShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -530,6 +531,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SqlDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mnm.PicShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -162,7 +162,29 @@
     [PFUser logInWithUsername:username password:password];
 }
 
+-(PFGeoPoint*)getCurrentLocation{
+    __block PFGeoPoint* location = nil;
+    [PFGeoPoint geoPointForCurrentLocationInBackground:^(PFGeoPoint * _Nullable geoPoint, NSError * _Nullable error) {
+        location = geoPoint;
+    }];
+    
+    return location;
+}
 
+-(void)uploadImage:(UIImage *)image{
+    NSData *imageData = UIImagePNGRepresentation(image);
+    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+    
+    PFObject *userPhoto = [PFObject objectWithClassName:PHOTO_TABLE];
+    userPhoto[USER] = [PFUser currentUser];
+    userPhoto[PICTURE] = imageFile;
+    
+    PFGeoPoint* currentLocation = [self getCurrentLocation];
+    userPhoto[LOCATION] = currentLocation;
+
+    
+    [userPhoto save];
+}
 
 
 
