@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Iyb-7w-KBe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Iyb-7w-KBe">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -130,11 +130,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="188" id="A0p-Zy-T4R">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellProfile" rowHeight="188" id="A0p-Zy-T4R" customClass="PostsTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="240" height="188"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A0p-Zy-T4R" id="oTV-KQ-tWh">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="187"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="187.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mqT-VO-pai">
@@ -150,13 +150,21 @@
                                                     <rect key="frame" x="57" y="153" width="127" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="likes" destination="voI-AC-8IM" id="s5A-cd-Z32"/>
+                                            <outlet property="postImageView" destination="KD9-uk-eRF" id="b0R-9j-laQ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="f7T-jH-Hvd" id="4uF-oK-zIk"/>
+                                    <outlet property="delegate" destination="f7T-jH-Hvd" id="fLP-wQ-x35"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="e8Z-uG-7Gl">
                                 <rect key="frame" x="275" y="32" width="22" height="22"/>
@@ -180,6 +188,7 @@
                     <connections>
                         <outlet property="posts" destination="TP0-Tj-TcM" id="nHX-4a-WYU"/>
                         <outlet property="profilePic" destination="D0P-uX-yzz" id="qdG-A5-PpY"/>
+                        <outlet property="tableView" destination="enr-Ye-fBs" id="Lby-LL-hGR"/>
                         <outlet property="userName" destination="rsx-Xg-fXR" id="hFh-3t-KsZ"/>
                     </connections>
                 </viewController>
@@ -310,7 +319,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="417"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gem-Pj-F7c" id="2fY-08-G9G">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="416.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="cCN-Yp-H13">

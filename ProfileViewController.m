@@ -9,6 +9,7 @@
 #import "ProfileViewController.h"
 #import "Model.h"
 #import "Post.h"
+#import "PostsTableViewCell.h"
 
 
 @interface ProfileViewController ()
@@ -19,7 +20,6 @@
 
 @implementation ProfileViewController
 
-@synthesize tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,64 +40,36 @@
         
         [[Model instance]getPhotosFromPFobjectArray:photos block:^(NSArray *arr) {
             posts = arr;
-            [self.tableView reloadData];
+            [tableView reloadData];
         }];
         
     } else {
         // show the signup or login screen
     }
 }
-- (void)configureView
-{
-    // Update the user interface for the detail item.
-    self.newsArray = [[NSMutableArray alloc] initWithObjects:@"hashTag",@"dubyGal", nil];
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // typically you need know which item the user has selected.
-    // this method allows you to keep track of the selection
-    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [posts count];
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
-           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    return UITableViewCellEditingStyleDelete;
-}
-
-// This will tell your UITableView how many rows you wish to have in each section.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.newsArray count];
-}
 
 // This will tell your UITableView what data to put in which cells in your table.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifer = @"CellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifer];
+    PostsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellProfile" forIndexPath:indexPath];
     
-    // Using a cell identifier will allow your app to reuse cells as they come and go from the screen.
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifer];
-    }
-    
-    // Deciding which data to put into this particular cell.
-    // If it the first row, the data input will be "Data1" from the array.
-    NSUInteger row = [indexPath row];
-    cell.textLabel.text = [self.newsArray objectAtIndex:row];
+    int row = indexPath.row;
+    cell.postImageView.image = [posts objectAtIndex:row];
     
     return cell;
+
 }
 /*
  #pragma mark - Navigation

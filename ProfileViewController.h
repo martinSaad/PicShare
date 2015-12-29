@@ -13,8 +13,9 @@
 {
     NSArray* photos;
     NSArray* posts;
-    
+    IBOutlet UITableView* tableView;
 }
+
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *posts;
 - (IBAction)followBtn:(id)sender;
@@ -24,10 +25,6 @@
 - (IBAction)picsBtn:(id)sender;
 - (IBAction)sortPicBtn:(id)sender;
 - (IBAction)locationBtn:(id)sender;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UITableViewCell *tableViewCell;
-@property (weak, nonatomic) IBOutlet UIImageView *pic;
-@property (weak, nonatomic) IBOutlet UILabel *likes;
 
-@property (strong, nonatomic) NSMutableArray* newsArray;
+
 @end

@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01FDC3051C32C10E0002A7E6 /* location-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01FDC3031C32C10E0002A7E6 /* location-icon.png */; settings = {ASSET_TAGS = (); }; };
-		01FDC3061C32C10E0002A7E6 /* app-launcher-150x150.png in Resources */ = {isa = PBXBuildFile; fileRef = 01FDC3041C32C10E0002A7E6 /* app-launcher-150x150.png */; settings = {ASSET_TAGS = (); }; };
-		01FDC3081C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01FDC3071C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg */; settings = {ASSET_TAGS = (); }; };
+		01FDC3051C32C10E0002A7E6 /* location-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01FDC3031C32C10E0002A7E6 /* location-icon.png */; };
+		01FDC3061C32C10E0002A7E6 /* app-launcher-150x150.png in Resources */ = {isa = PBXBuildFile; fileRef = 01FDC3041C32C10E0002A7E6 /* app-launcher-150x150.png */; };
+		01FDC3081C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01FDC3071C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg */; };
 		8405BF5C1C0EF019009BB9A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405BF5B1C0EF019009BB9A7 /* main.m */; };
 		8405BF5F1C0EF019009BB9A7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8405BF5E1C0EF019009BB9A7 /* AppDelegate.m */; };
 		8405BF651C0EF019009BB9A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8405BF631C0EF019009BB9A7 /* Main.storyboard */; };
@@ -536,7 +536,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SqlDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mnm.PicShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -555,7 +555,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SqlDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mnm.PicShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
