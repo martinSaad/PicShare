@@ -37,6 +37,8 @@
 		BF60279F1C2C2DCD00A294E1 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF60279C1C2C2DCD00A294E1 /* FBSDKShareKit.framework */; };
 		BF6027A11C2C2E9D00A294E1 /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6027A01C2C2E9D00A294E1 /* ParseFacebookUtils.framework */; };
 		BF6027A31C2C2EBD00A294E1 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6027A21C2C2EBD00A294E1 /* ParseFacebookUtilsV4.framework */; };
+		BF7BA3E21C31881000EA1121 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7BA3E11C31881000EA1121 /* ParseUI.framework */; };
+		BF7BA3E51C326C7F00EA1121 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7BA3E41C326C7F00EA1121 /* CameraViewController.m */; };
 		BF94EDE21C2EE5AB006A0105 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = BF94EDE11C2EE5AB006A0105 /* Constants.m */; };
 		BF94EDE61C2EF40D006A0105 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = BF94EDE51C2EF40D006A0105 /* Post.m */; };
 		BFD489161C30442900979D5A /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD489151C30442900979D5A /* SearchViewController.m */; };
@@ -96,6 +98,9 @@
 		BF60279C1C2C2DCD00A294E1 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		BF6027A01C2C2E9D00A294E1 /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		BF6027A21C2C2EBD00A294E1 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		BF7BA3E11C31881000EA1121 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		BF7BA3E31C326C7F00EA1121 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		BF7BA3E41C326C7F00EA1121 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		BF94EDE01C2EE5AB006A0105 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BF94EDE11C2EE5AB006A0105 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		BF94EDE31C2EE83B006A0105 /* ModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelProtocol.h; sourceTree = "<group>"; };
@@ -111,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF7BA3E21C31881000EA1121 /* ParseUI.framework in Frameworks */,
 				BF60278D1C2C194700A294E1 /* libz.tbd in Frameworks */,
 				BF60278B1C2C193A00A294E1 /* libsqlite3.tbd in Frameworks */,
 				BF60279F1C2C2DCD00A294E1 /* FBSDKShareKit.framework in Frameworks */,
@@ -144,6 +150,8 @@
 		8405BF4D1C0EF019009BB9A7 = {
 			isa = PBXGroup;
 			children = (
+				BF7BA3E31C326C7F00EA1121 /* CameraViewController.h */,
+				BF7BA3E41C326C7F00EA1121 /* CameraViewController.m */,
 				BF2C90E71C2C630B00481E2A /* Frameworks */,
 				8405BF581C0EF019009BB9A7 /* SqlDemo */,
 				8405BF721C0EF019009BB9A7 /* SqlDemoTests */,
@@ -240,6 +248,7 @@
 		BF2C90E71C2C630B00481E2A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BF7BA3E11C31881000EA1121 /* ParseUI.framework */,
 				BF60279B1C2C2DCD00A294E1 /* FBSDKLoginKit.framework */,
 				BF60279C1C2C2DCD00A294E1 /* FBSDKShareKit.framework */,
 				BF60278C1C2C194700A294E1 /* libz.tbd */,
@@ -371,6 +380,7 @@
 				BF6027991C2C2B2E00A294E1 /* MainTabBarController.m in Sources */,
 				8405BF5C1C0EF019009BB9A7 /* main.m in Sources */,
 				BF94EDE61C2EF40D006A0105 /* Post.m in Sources */,
+				BF7BA3E51C326C7F00EA1121 /* CameraViewController.m in Sources */,
 				8405BF821C0EF070009BB9A7 /* Model.m in Sources */,
 				BFD489161C30442900979D5A /* SearchViewController.m in Sources */,
 				BF6027961C2C29B700A294E1 /* SignUpViewController.m in Sources */,

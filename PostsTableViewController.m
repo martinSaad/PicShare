@@ -19,12 +19,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     posts = [[NSMutableArray alloc] init];
+    likes = [[NSMutableArray alloc] init];
     __block NSArray* arr = [[NSArray alloc]init];
     
     [[Model instance] getFollowingUsersAsync:^(NSArray *followingUsersArray) {
         
-        //create post for all proccess
-        Post* post = [[Post alloc]init];
         
         followingUsers = followingUsersArray;
         
@@ -33,6 +32,16 @@
 //            [[Model instance] getPhotos:user block:^(NSArray *pfobjectArr) {
 //                arr = pfobjectArr;
 //            }];
+            
+            __block int i=0;
+            for (PFObject* photo in arr){
+                [[Model instance] getLikesOfPhoto:photo block:^(NSArray *likesArr) {
+                    [likes insertObject:[NSArray arrayWithObjects:likesArr,nil] atIndex:i];
+                    //likes = likesArr;
+                    i++;
+                    //[self.tableView reloadData];
+                }];
+            }
         }
         
         [[Model instance] getPhotosFromPFobjectArray:arr block:^(NSArray *photosArr) {
@@ -40,12 +49,7 @@
             [self.tableView reloadData];
         }];
         
-        for (PFObject* photo in arr){
-            [[Model instance] getLikesOfPhoto:photo block:^(NSArray *likesArr) {
-                likes = likesArr;
-                [self.tableView reloadData];
-            }];
-        }
+
         
     }];
     
@@ -110,7 +114,18 @@
     
     int row = indexPath.row;
     cell.postImageView.image = [photos objectAtIndex:row];
-    cell.likes.text = [NSString stringWithFormat:@"%d", [posts count]];
+//    if ([likes objectAtIndex:row] != nil){
+//        NSArray* likesArr = [likes objectAtIndex:row];
+//        NSMutableString* tmp = [[NSMutableString alloc]init];
+//        for (NSString* name in likesArr){
+//            [tmp appendString:name];
+//            [tmp appendString:@", "];
+//        }
+//        cell.likes.text = tmp;
+//    }
+
+
+    
     return cell;
 }
 
