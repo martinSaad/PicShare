@@ -25,6 +25,7 @@
 - (IBAction)picsBtn:(id)sender;
 - (IBAction)sortPicBtn:(id)sender;
 - (IBAction)locationBtn:(id)sender;
+- (IBAction)profilePicBtn:(id)sender;
 
 
 @end

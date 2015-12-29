@@ -28,6 +28,7 @@ extern NSString *const PHONE;
 extern NSString *const EMAIL;
 extern NSString *const BIO;
 extern NSString *const PHOTOS;
+extern NSString *const PROFILE_PIC;
 
 //comment
 extern NSString *const COMMENT;
@@ -37,10 +38,6 @@ extern NSString *const USER;
 //followers
 extern NSString *const FOLLOWING;
 extern NSString *const WHO_FOLLOWS_ME;
-
-//tag
-extern NSString *const TAG_NAME;
-extern NSString *const PHOTOS;
 
 //photo
 extern NSString *const PICTURE;

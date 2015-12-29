@@ -25,6 +25,9 @@
 -(void)saveUserDetails:(NSString*)name withEmail:(NSString*)email withGender:(NSString*)gender withPhotoUrl:(NSURL*)photoUrl;
 -(PFGeoPoint*)getCurrentLocation;
 -(void)uploadImage:(UIImage*)image description:(NSString*)description hashtag:(NSString*)hashtag;
+-(void)uploadProfileImage:(UIImage*)image;
+-(UIImage*)getProfilePic;
+
 
 //test
 -(NSArray*)getPFobjects:(PFUser*)user;

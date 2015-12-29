@@ -70,7 +70,7 @@
         <!--Profile-->
         <scene sceneID="n3y-Y4-70l">
             <objects>
-                <viewController id="f7T-jH-Hvd" customClass="ProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="f7T-jH-Hvd" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ftC-9N-gha">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,7 +82,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profilePic.jpeg" id="D0P-uX-yzz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="D0P-uX-yzz">
                                 <rect key="frame" x="10" y="67" width="90" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -181,6 +181,13 @@
                                     <action selector="sortPicBtn:" destination="f7T-jH-Hvd" eventType="touchUpInside" id="HYh-aY-mrO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b3e-fi-tlT">
+                                <rect key="frame" x="27" y="85" width="56" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="profilePicBtn:" destination="f7T-jH-Hvd" eventType="touchUpInside" id="Ng7-GF-v40"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -214,7 +221,7 @@
         <!--Camera-->
         <scene sceneID="oUS-vf-5a7">
             <objects>
-                <viewController id="Qum-lT-j2I" customClass="CameraViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraViewController" id="Qum-lT-j2I" customClass="CameraViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pKT-M5-gyT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -243,7 +250,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="upload"/>
                                 <connections>
-                                    <segue destination="ORX-BW-Lxt" kind="modal" identifier="upload" id="wJM-qO-YOd"/>
+                                    <action selector="upload:" destination="Qum-lT-j2I" eventType="touchUpInside" id="sCd-cH-83L"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="jZa-2t-BRY">
@@ -270,14 +277,17 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Camera" image="Camera-25.png" id="91Y-Vt-DsU"/>
                     <connections>
+                        <outlet property="decriptionLabel" destination="cAX-xt-3o9" id="OXd-xq-o7C"/>
                         <outlet property="disc" destination="jZa-2t-BRY" id="JB1-9h-kl7"/>
                         <outlet property="hashtag" destination="HjD-n8-6zn" id="OJO-P9-CPg"/>
+                        <outlet property="hashtagLabel" destination="hln-Sx-13f" id="aEf-Ho-dXh"/>
                         <outlet property="imageView" destination="89f-Ic-tuR" id="Toq-G8-QQc"/>
+                        <outlet property="uploadBtn" destination="PT2-FQ-uQd" id="Hzc-Yt-FfF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4c-Gi-NOS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="254" y="1894"/>
+            <point key="canvasLocation" x="232" y="1838"/>
         </scene>
         <!--Search-->
         <scene sceneID="SOJ-k1-twG">
@@ -309,7 +319,7 @@
         <!--Home-->
         <scene sceneID="Wss-A1-AoB">
             <objects>
-                <tableViewController id="ORX-BW-Lxt" customClass="PostsTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PostsViewController" id="ORX-BW-Lxt" customClass="PostsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="417" sectionHeaderHeight="28" sectionFooterHeight="28" id="46l-2K-Evu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -517,10 +527,8 @@
         <image name="app-launcher-150x150.png" width="150" height="150"/>
         <image name="jAXezevs_400x400.jpeg" width="400" height="400"/>
         <image name="location-icon.png" width="300" height="300"/>
-        <image name="profilePic.jpeg" width="96" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uDp-aX-6nP"/>
-        <segue reference="wJM-qO-YOd"/>
     </inferredMetricsTieBreakers>
 </document>

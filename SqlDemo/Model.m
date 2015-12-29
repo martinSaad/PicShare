@@ -159,12 +159,36 @@ static Model* instance = nil;
     } );
 }
 
+-(void)uploadProfileImageAsync:(UIImage*)image block:(void(^)(NSError*))block{
+    dispatch_queue_t myQueue =    dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        [modelImpl uploadProfileImage:image];
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(nil);
+        });
+    } );
+}
+
 -(NSString*)getCurrentUser{
     return [modelImpl getCurrentUser];
 }
 
 
-
+-(void)getProfilePicAsync:(void(^)(UIImage*))block{
+    dispatch_queue_t myQueue =    dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        UIImage* profilePic = [modelImpl getProfilePic];
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(profilePic);
+        });
+    } );
+}
 
 
 @end

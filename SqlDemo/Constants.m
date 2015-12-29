@@ -10,7 +10,7 @@
 
 @implementation Constants
 
-NSString *const USER_TABLE = @"User";
+NSString *const USER_TABLE = @"_User";
 NSString *const PHOTO_TABLE = @"Photo";
 NSString *const FOLLOWERS_TABLE = @"Followers";
 NSString *const TAG_TABLE = @"Tag";
@@ -27,6 +27,7 @@ NSString *const PHONE = @"phone";
 NSString *const EMAIL = @"email";
 NSString *const BIO = @"bio";
 NSString *const PHOTOS = @"photos";
+NSString *const PROFILE_PIC = @"profile_pic";
 
 //comment
 NSString *const COMMENT = @"comment";
@@ -36,9 +37,6 @@ NSString *const USER = @"user";
 //followers
 NSString *const FOLLOWING = @"following";
 NSString *const WHO_FOLLOWS_ME = @"who_follows_me";
-
-//tag
-NSString *const TAG_NAME = @"tag_name";
 
 //photo
 NSString *const PICTURE = @"picture";

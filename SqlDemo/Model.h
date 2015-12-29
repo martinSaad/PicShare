@@ -32,8 +32,10 @@
 
 //saveing type
 -(void)uploadImageAsync:(UIImage*)image description:(NSString*)description hashtag:(NSString*)hashtag block:(void(^)(NSError*))block;
+-(void)uploadProfileImageAsync:(UIImage*)image block:(void(^)(NSError*))block;
 -(PFGeoPoint*)getCurrentLocation;
 -(NSString*)getCurrentUser;
+-(void)getProfilePicAsync:(void(^)(UIImage*))block;
 
 @end
 

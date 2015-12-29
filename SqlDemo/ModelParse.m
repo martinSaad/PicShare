@@ -191,6 +191,15 @@
     [userPhoto save];
 }
 
+-(void)uploadProfileImage:(UIImage*)image{
+    NSData *imageData = UIImagePNGRepresentation(image);
+    PFFile *imageFile = [PFFile fileWithName:@"profile" data:imageData];
+    
+    PFUser* currentUser = [PFUser currentUser];
+    currentUser[PROFILE_PIC] = imageFile;
+    [currentUser save];
+}
+
 -(NSString*)getCurrentUser{
     PFUser* user = [PFUser currentUser];
     NSString* firstName = user[FIRST_NAME];
@@ -199,6 +208,15 @@
     
     return fullName;
     
+}
+
+-(UIImage*)getProfilePic{
+    PFUser* user = [PFUser currentUser];
+    
+    PFFile* file = user[PROFILE_PIC];
+    NSData* data = [file getData];
+    UIImage* photo = [UIImage imageWithData:data];
+    return photo;
 }
 
 @end

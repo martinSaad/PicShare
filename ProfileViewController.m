@@ -10,6 +10,7 @@
 #import "Model.h"
 #import "Post.h"
 #import "PostsTableViewCell.h"
+#import "CameraViewController.h"
 
 
 @interface ProfileViewController ()
@@ -29,6 +30,7 @@
     //set the profile pic in a circle.
     self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
     self.profilePic.clipsToBounds = YES;
+
     
     photos = [[NSMutableArray alloc] init];
     // __block NSArray* arr = [[NSArray alloc]init];
@@ -46,6 +48,11 @@
     } else {
         // show the signup or login screen
     }
+    
+    //get profile pic
+    [[Model instance]getProfilePicAsync:^(UIImage *image) {
+        self.profilePic.image = image;
+    }];
 }
 
 
@@ -71,15 +78,12 @@
     return cell;
 
 }
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
+
+
+
+
+
 
 - (IBAction)optionBtn:(id)sender {
 }
@@ -102,14 +106,23 @@
 - (IBAction)locationBtn:(id)sender {
 }
 
+- (IBAction)profilePicBtn:(id)sender {
+    //go to HOME controller
+    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CameraViewController* cameraVC = [sb instantiateViewControllerWithIdentifier:@"CameraViewController"];
+    
+    cameraVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    cameraVC.isProfilePic = YES;
+    [self showViewController:cameraVC sender:self];
+
+}
+
 
 
 
 - (IBAction)tagBtn:(id)sender {
 }
-- (IBAction)options:(id)sender {
-    
-}
+
 - (IBAction)likeBtn:(id)sender {
 }
 
