@@ -158,6 +158,15 @@ static Model* instance = nil;
         });
     } );
 }
+
+-(NSString*)getCurrentUser{
+    return [modelImpl getCurrentUser];
+}
+
+
+
+
+
 @end
 
 

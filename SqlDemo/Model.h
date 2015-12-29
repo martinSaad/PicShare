@@ -33,6 +33,8 @@
 //saveing type
 -(void)uploadImageAsync:(UIImage*)image description:(NSString*)description hashtag:(NSString*)hashtag block:(void(^)(NSError*))block;
 -(PFGeoPoint*)getCurrentLocation;
+-(NSString*)getCurrentUser;
+
 @end
 
 

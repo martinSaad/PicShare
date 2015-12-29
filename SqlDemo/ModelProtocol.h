@@ -28,4 +28,7 @@
 
 //test
 -(NSArray*)getPFobjects:(PFUser*)user;
+-(NSString*)getCurrentUser;
+
+
 @end

@@ -39,6 +39,7 @@
 		BF6027A31C2C2EBD00A294E1 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6027A21C2C2EBD00A294E1 /* ParseFacebookUtilsV4.framework */; };
 		BF7BA3E21C31881000EA1121 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7BA3E11C31881000EA1121 /* ParseUI.framework */; };
 		BF7BA3E51C326C7F00EA1121 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7BA3E41C326C7F00EA1121 /* CameraViewController.m */; };
+		BF7BA3E81C32B66F00EA1121 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7BA3E71C32B66F00EA1121 /* ProfileViewController.m */; };
 		BF94EDE21C2EE5AB006A0105 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = BF94EDE11C2EE5AB006A0105 /* Constants.m */; };
 		BF94EDE61C2EF40D006A0105 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = BF94EDE51C2EF40D006A0105 /* Post.m */; };
 		BFD489161C30442900979D5A /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD489151C30442900979D5A /* SearchViewController.m */; };
@@ -101,6 +102,8 @@
 		BF7BA3E11C31881000EA1121 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		BF7BA3E31C326C7F00EA1121 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = ../CameraViewController.h; sourceTree = "<group>"; };
 		BF7BA3E41C326C7F00EA1121 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = ../CameraViewController.m; sourceTree = "<group>"; };
+		BF7BA3E61C32B66F00EA1121 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = ../ProfileViewController.h; sourceTree = "<group>"; };
+		BF7BA3E71C32B66F00EA1121 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = ../ProfileViewController.m; sourceTree = "<group>"; };
 		BF94EDE01C2EE5AB006A0105 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BF94EDE11C2EE5AB006A0105 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		BF94EDE31C2EE83B006A0105 /* ModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelProtocol.h; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 				BFD489151C30442900979D5A /* SearchViewController.m */,
 				BF7BA3E31C326C7F00EA1121 /* CameraViewController.h */,
 				BF7BA3E41C326C7F00EA1121 /* CameraViewController.m */,
+				BF7BA3E61C32B66F00EA1121 /* ProfileViewController.h */,
+				BF7BA3E71C32B66F00EA1121 /* ProfileViewController.m */,
 			);
 			path = SqlDemo;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 				BF6027931C2C291100A294E1 /* LoginViewController.m in Sources */,
 				8405BF5F1C0EF019009BB9A7 /* AppDelegate.m in Sources */,
 				BF2C90ED1C2C637300481E2A /* PostsTableViewCell.m in Sources */,
+				BF7BA3E81C32B66F00EA1121 /* ProfileViewController.m in Sources */,
 				84F2E3C21C2ACDB1003EAFEF /* ModelParse.m in Sources */,
 				BF94EDE21C2EE5AB006A0105 /* Constants.m in Sources */,
 				BF6027991C2C2B2E00A294E1 /* MainTabBarController.m in Sources */,

@@ -188,6 +188,14 @@
     [userPhoto save];
 }
 
-
+-(NSString*)getCurrentUser{
+    PFUser* user = [PFUser currentUser];
+    NSString* firstName = user[FIRST_NAME];
+    NSString* lastName = user[LAST_NAME];
+    NSString* fullName = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    
+    return fullName;
+    
+}
 
 @end
