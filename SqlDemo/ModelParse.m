@@ -171,16 +171,18 @@
     return location;
 }
 
--(void)uploadImage:(UIImage *)image{
+-(void)uploadImage:(UIImage *)image description:(NSString*)description hashtag:(NSString*)hashtag{
     NSData *imageData = UIImagePNGRepresentation(image);
-    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+    PFFile *imageFile = [PFFile fileWithName:description data:imageData];
     
     PFObject *userPhoto = [PFObject objectWithClassName:PHOTO_TABLE];
     userPhoto[USER] = [PFUser currentUser];
     userPhoto[PICTURE] = imageFile;
+    userPhoto[DESCRIPTION] = description;
+    userPhoto[HASHTAG] = hashtag;
     
-    PFGeoPoint* currentLocation = [self getCurrentLocation];
-    userPhoto[LOCATION] = currentLocation;
+//    PFGeoPoint* currentLocation = [self getCurrentLocation];
+//    userPhoto[LOCATION] = currentLocation;
 
     
     [userPhoto save];

@@ -46,6 +46,9 @@ extern NSString *const PHOTOS;
 extern NSString *const PICTURE;
 extern NSString *const LOCATION;
 extern NSString *const LIKES;
+extern NSString *const DESCRIPTION;
+extern NSString *const HASHTAG;
+
 
 
 

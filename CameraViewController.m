@@ -71,12 +71,20 @@
     
     [imageView setImage:image];
     
-    [[Model instance]uploadImageAsync:image block:^(NSError *error) {
-        
-    }];
+
     
     [imagePicker dismissViewControllerAnimated:YES completion:nil];
     
+}
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"upload"]){
+        UIImage* image = [imageView image];
+        [[Model instance]uploadImageAsync:image description:self.disc.text hashtag:self.hashtag.text block:^(NSError *error) {
+            
+        }];
+    }
 }
 
 @end

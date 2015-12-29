@@ -44,5 +44,7 @@ NSString *const TAG_NAME = @"tag_name";
 NSString *const PICTURE = @"picture";
 NSString *const LOCATION = @"location";
 NSString *const LIKES = @"likes";
+NSString *const DESCRIPTION = @"description";
+NSString *const HASHTAG = @"hashtag";
 
 @end

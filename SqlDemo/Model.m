@@ -146,11 +146,11 @@ static Model* instance = nil;
     return [modelImpl getCurrentLocation];
 }
 
--(void)uploadImageAsync:(UIImage*)image block:(void(^)(NSError*))block{
+-(void)uploadImageAsync:(UIImage*)image description:(NSString*)description hashtag:(NSString*)hashtag block:(void(^)(NSError*))block{
     dispatch_queue_t myQueue =    dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
-        [modelImpl uploadImage:image];
+        [modelImpl uploadImage:image description:description hashtag:hashtag];
         
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{

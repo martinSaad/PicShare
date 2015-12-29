@@ -18,6 +18,9 @@
 
 }
 - (IBAction)addPicture:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *hashtag;
+@property (weak, nonatomic) IBOutlet UITextField *disc;
+
 
 
 
