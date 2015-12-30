@@ -32,6 +32,14 @@ static Model* instance = nil;
     return self;
 }
 
+-(NSArray*)getFollowing{
+    return [modelImpl getFollowingUsers];
+}
+
+-(NSArray*)getPhotoObjectsSync:(PFUser*)user{
+    return [modelImpl getPhotoObjects:user];
+}
+
 
 
 //Block Asynch implementation
@@ -66,11 +74,11 @@ static Model* instance = nil;
     } );
 }
 
--(void)getPhotos:(PFUser*)user block:(void(^)(NSArray*))block{
+-(void)getPhotoObjects:(PFUser*)user block:(void(^)(NSArray*))block{
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
-        NSArray* image = [modelImpl getPhotos:user];
+        NSArray* image = [modelImpl getPhotoObjects:user];
         
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
@@ -79,11 +87,11 @@ static Model* instance = nil;
     } );
 }
 
--(void)getPhotosFromPFobjectArray:(NSArray*)PFobjectArray block:(void(^)(NSArray*))block{
+-(void)getPhotoFromObject:(PFObject*)object block:(void(^)(UIImage*))block{
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
-        NSArray* image = [modelImpl getPhotosFromPFobjectArray:PFobjectArray];
+        UIImage* image = [modelImpl getPhotoFromObject:object];
         
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
@@ -92,12 +100,11 @@ static Model* instance = nil;
     } );
 }
 
-
--(void)getLikesOfPhoto:(PFObject*)photo block:(void(^)(NSArray*))block{
+-(void)getPhotoLikes:(PFObject*)object block:(void(^)(NSArray*))block{
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
-        NSArray* likes = [modelImpl getLikesOfPhoto:photo];
+        NSArray* likes = [modelImpl getPhotoLikes:object];
         
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
@@ -105,6 +112,7 @@ static Model* instance = nil;
         });
     } );
 }
+
 
 
 -(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone block:(void(^)(NSError*))block{
@@ -134,10 +142,6 @@ static Model* instance = nil;
             block(nil);
         });
     } );
-}
-
--(NSArray*)getPFobjects:(PFUser*)user{
-    return [modelImpl getPhotos:user];
 }
 
 
@@ -190,6 +194,13 @@ static Model* instance = nil;
     } );
 }
 
+-(NSString*)getPhotoDescription:(PFObject*)object{
+    return [modelImpl getPhotoDescription:object];
+}
+
+-(NSString*)getPhotoHashTag:(PFObject*)object{
+    return [modelImpl getPhotoHashTag:object];
+}
 
 @end
 

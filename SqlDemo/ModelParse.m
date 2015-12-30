@@ -57,7 +57,10 @@
     return whoFollowsMe;
 }
 
--(NSArray*)getPhotos:(PFUser*)user{
+
+
+
+-(NSArray*)getPhotoObjects:(PFUser*)user{
     PFQuery* query = [PFQuery queryWithClassName:PHOTO_TABLE];
     [query whereKey:USER equalTo:user];
     NSArray* res = [query findObjects];
@@ -65,38 +68,26 @@
     return res;
 }
 
-//test
--(NSArray*)getPFobjects:(PFUser*)user{
-    PFQuery* query = [PFQuery queryWithClassName:PHOTO_TABLE];
-    [query whereKey:USER equalTo:user];
-    NSArray* res = [query findObjects];
-    
-    return res;
+-(UIImage*)getPhotoFromObject:(PFObject*)object{
+    PFFile* file = object[PICTURE];
+    NSData* data = [file getData];
+    UIImage* photo = [UIImage imageWithData:data];
+    return photo;
 }
 
--(NSArray*)getPhotosFromPFobjectArray:(NSArray*)PFobjectArray{
-    NSMutableArray* array = [[NSMutableArray alloc] init];
-    for(PFObject* obj in PFobjectArray){
-        PFFile* file = obj[PICTURE];
-        NSData* data = [file getData];
-        UIImage* photo = [UIImage imageWithData:data];
-        [array addObject:photo];
-    }
-    return array;
-}
-
--(NSArray*)getLikesOfPhoto:(PFObject *)photo{
-    PFQuery* query = [PFQuery queryWithClassName:PHOTO_TABLE];
-    [query whereKey:OBJECT_ID equalTo:photo];
-    NSArray* res = [query findObjects];
-    
-    NSMutableArray* likes = [[NSMutableArray alloc]init];
-    for (PFUser* user in res){
-        [likes addObject:user[FIRST_NAME]];
-    }
-    
-    
+-(NSArray*)getPhotoLikes:(PFObject*)object{
+    PFRelation *relation = [object relationForKey:LIKES];
+    PFQuery *queryRelation = [relation query];
+    NSArray* likes = [queryRelation findObjects];
     return likes;
+}
+
+-(NSString*)getPhotoDescription:(PFObject*)object{
+    return object[DESCRIPTION];
+}
+
+-(NSString*)getPhotoHashTag:(PFObject*)object{
+    return object[HASHTAG];
 }
 
 

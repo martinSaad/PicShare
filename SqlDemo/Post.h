@@ -13,5 +13,7 @@
 
 @property UIImage* photo;
 @property NSArray* likes;
+@property NSString* description;
+@property NSString* hashtag;
 
 @end

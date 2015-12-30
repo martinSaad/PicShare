@@ -18,79 +18,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    posts = [[NSMutableArray alloc] init];
-    likes = [[NSMutableArray alloc] init];
-    __block NSArray* arr = [[NSArray alloc]init];
+    photosArr = [[NSMutableArray alloc]init];
     
-    [[Model instance] getFollowingUsersAsync:^(NSArray *followingUsersArray) {
-        
-        
-        followingUsers = followingUsersArray;
-        
-        for (PFUser* user in followingUsers){
-           arr = [[Model instance] getPFobjects:user];
-//            [[Model instance] getPhotos:user block:^(NSArray *pfobjectArr) {
-//                arr = pfobjectArr;
-//            }];
-            
-            __block int i=0;
-            for (PFObject* photo in arr){
-                [[Model instance] getLikesOfPhoto:photo block:^(NSArray *likesArr) {
-                    [likes insertObject:[NSArray arrayWithObjects:likesArr,nil] atIndex:i];
-                    //likes = likesArr;
-                    i++;
-                    //[self.tableView reloadData];
-                }];
-            }
+    //get users who i follow
+    followingUsers = [[Model instance] getFollowing];
+    
+    
+    //for each user, get an array of his photos objects (PFObject)
+    photoObjects = [[NSMutableArray alloc]init];
+    for (PFUser* user in followingUsers){
+        NSArray* objects = [[Model instance] getPhotoObjectsSync:user];
+        [photoObjects addObject:objects];
+    }
+    
+    //save all photos regardless who is the user taht created it
+    for (NSArray* arr in photoObjects){
+        for (PFObject* obj in arr){
+            [photosArr addObject:obj];
         }
-        
-        [[Model instance] getPhotosFromPFobjectArray:arr block:^(NSArray *photosArr) {
-            photos = photosArr;
-            [self.tableView reloadData];
-        }];
-        
-
-        
-    }];
+    }
+    
+    //sort the photoObjects by creation date
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+    sortedPhotosObjects = [photosArr sortedArrayUsingDescriptors:sortDescriptors];
     
 
-    
-
-    
-
-    
-    
-//    [[Model instance] getFollowingUsersAsync:^(NSArray *followingUsersArray) {
-//        followingUsers = followingUsersArray;
-//        
-//        //get photos of each user
-//        for (PFUser* user in followingUsers){
-//            [[Model instance] getPhotos:user block:^(NSArray * photosArray) {
-//                arr = photosArray;
-//                
-//                //get photos
-//                [Model instance] getPhotosFromPFobjectArray:arr block:^(NSArray *photosArr) {
-//                    photos = photosArr;
-//                }
-//                
-//                //get likes
-//                
-//                [self.tableView reloadData];
-//            }];
-//        }
-//        //get likes of each photo
-//        
-//    }];
-    
-    
-    
-    
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,7 +58,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return photos.count;
+    return sortedPhotosObjects.count;
 }
 
 
@@ -113,18 +66,21 @@
     PostsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
     int row = indexPath.row;
-    cell.postImageView.image = [photos objectAtIndex:row];
-//    if ([likes objectAtIndex:row] != nil){
-//        NSArray* likesArr = [likes objectAtIndex:row];
-//        NSMutableString* tmp = [[NSMutableString alloc]init];
-//        for (NSString* name in likesArr){
-//            [tmp appendString:name];
-//            [tmp appendString:@", "];
-//        }
-//        cell.likes.text = tmp;
-//    }
+    PFObject* object = [sortedPhotosObjects objectAtIndex:row];
+    
+    __block UIImage* photo;
+    [[Model instance] getPhotoFromObject:object block:^(UIImage * image) {
+        photo = image;
+        cell.postImageView.image = photo;
+    }];
+    
+    [[Model instance]getPhotoLikes:object block:^(NSArray *array) {
+        likes = array;
+        int likesCount = [likes count];
+        cell.likes.text = [NSString stringWithFormat:@"%d", likesCount];
+    }];
 
-
+    //TODO add likes description and hashtag
     
     return cell;
 }
@@ -173,5 +129,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 @end

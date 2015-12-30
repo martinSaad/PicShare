@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import <ParseFacebookUtilsV4/ParseFacebookUtilsV4.h>
 #import "Model.h"
+#import "PostsTableViewController.h"
 
 @interface LoginViewController ()
 
@@ -21,6 +22,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    PFUser* user = [PFUser currentUser];
+    //if user is arleady logged in - skip login screen
+    if (user){
+        [self performSegueWithIdentifier:@"loginSeg" sender:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -24,35 +24,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //set the user name.
-    self.userName.text = [[Model instance] getCurrentUser];
-    
-    //set the profile pic in a circle.
-    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
-    self.profilePic.clipsToBounds = YES;
-
-    
-    photos = [[NSMutableArray alloc] init];
-    // __block NSArray* arr = [[NSArray alloc]init];
-    // Do any additional setup after loading the view.
-    
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        photos = [[Model instance]getPFobjects:currentUser];
-        
-        [[Model instance]getPhotosFromPFobjectArray:photos block:^(NSArray *arr) {
-            posts = arr;
-            [tableView reloadData];
-        }];
-        
-    } else {
-        // show the signup or login screen
-    }
-    
-    //get profile pic
-    [[Model instance]getProfilePicAsync:^(UIImage *image) {
-        self.profilePic.image = image;
-    }];
+//    //set the user name.
+//    self.userName.text = [[Model instance] getCurrentUser];
+//    
+//    //set the profile pic in a circle.
+//    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
+//    self.profilePic.clipsToBounds = YES;
+//
+//    
+//    photos = [[NSMutableArray alloc] init];
+//    // __block NSArray* arr = [[NSArray alloc]init];
+//    // Do any additional setup after loading the view.
+//    
+//    PFUser *currentUser = [PFUser currentUser];
+//    if (currentUser) {
+//        photos = [[Model instance]getPFobjects:currentUser];
+//        
+//        [[Model instance]getPhotosFromPFobjectArray:photos block:^(NSArray *arr) {
+//            posts = arr;
+//            [tableView reloadData];
+//        }];
+//        
+//    } else {
+//        // show the signup or login screen
+//    }
+//    
+//    //get profile pic
+//    [[Model instance]getProfilePicAsync:^(UIImage *image) {
+//        self.profilePic.image = image;
+//    }];
 }
 
 

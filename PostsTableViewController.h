@@ -10,9 +10,14 @@
 
 @interface PostsTableViewController : UITableViewController{
     NSArray* followingUsers;
-    NSArray* photos;
-    NSMutableArray* likes;
+    //NSArray* photos;
+    NSArray* likes;
+    NSArray* descriptions;
+    NSArray* hashtags;
+    NSArray* sortedPhotosObjects;
     NSMutableArray* posts;
+    NSMutableArray* photoObjects;
+    NSMutableArray* photosArr;
 }
 
 @end

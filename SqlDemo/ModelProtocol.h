@@ -12,9 +12,9 @@
 
 
 
--(NSArray*)getPhotos:(PFUser*)user;
--(NSArray*)getPhotosFromPFobjectArray:(NSArray*)PFobjectArray;
--(NSArray*)getLikesOfPhoto:(PFObject*)photo;
+//-(NSArray*)getPhotos:(PFUser*)user;
+-(UIImage*)getPhotoFromObject:(PFObject*)object;
+-(NSArray*)getPhotoLikes:(PFObject*)object;
 
 -(NSArray*)getFollowingUsers;
 -(NSArray*)getWhoFollowsMe;
@@ -28,10 +28,17 @@
 -(void)uploadProfileImage:(UIImage*)image;
 -(UIImage*)getProfilePic;
 
-
-//test
--(NSArray*)getPFobjects:(PFUser*)user;
+-(NSArray*)getPhotoObjects:(PFUser*)user;
 -(NSString*)getCurrentUser;
 
 
+-(NSString*)getPhotoDescription:(PFObject*)object;
+-(NSString*)getPhotoHashTag:(PFObject*)object;
+
+
+
+-(NSArray*)getFollowing;
+
 @end
+
+
