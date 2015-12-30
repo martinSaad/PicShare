@@ -20,12 +20,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *posts;
 - (IBAction)followBtn:(id)sender;
 - (IBAction)followingBtn:(id)sender;
-- (IBAction)optinosBtn:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
 - (IBAction)picsBtn:(id)sender;
 - (IBAction)sortPicBtn:(id)sender;
 - (IBAction)locationBtn:(id)sender;
 - (IBAction)profilePicBtn:(id)sender;
+- (IBAction)logoutBtn:(id)sender;
 
 
 @end

@@ -130,12 +130,24 @@ static Model* instance = nil;
 }
 
 
--(void)signIn:(NSString*)username andPassword:(NSString*)password block:(void(^)(NSError*))block{
-    
+-(void)signIn:(NSString*)username andPassword:(NSString*)password block:(void(^)(BOOL))block{
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
-        [modelImpl signIn:username andPassword:password];
+        BOOL result = [modelImpl signIn:username andPassword:password];
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(result);
+        });
+    } );
+}
+
+-(void)logOut:(void(^)(NSError*))block{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        [modelImpl logOut];
         
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
@@ -143,8 +155,6 @@ static Model* instance = nil;
         });
     } );
 }
-
-
 
 -(PFGeoPoint*)getCurrentLocation{
     return [modelImpl getCurrentLocation];
@@ -200,6 +210,10 @@ static Model* instance = nil;
 
 -(NSString*)getPhotoHashTag:(PFObject*)object{
     return [modelImpl getPhotoHashTag:object];
+}
+
+-(BOOL)ifUserConnecter{
+    return [modelImpl ifUserConnecter];
 }
 
 @end

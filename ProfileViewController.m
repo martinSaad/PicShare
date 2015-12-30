@@ -11,6 +11,7 @@
 #import "Post.h"
 #import "PostsTableViewCell.h"
 #import "CameraViewController.h"
+#import "LoginViewController.h"
 
 
 @interface ProfileViewController ()
@@ -82,11 +83,6 @@
 
 
 
-
-
-
-- (IBAction)optionBtn:(id)sender {
-}
 - (IBAction)followBtn:(id)sender {
 }
 
@@ -115,6 +111,20 @@
     cameraVC.isProfilePic = YES;
     [self showViewController:cameraVC sender:self];
 
+}
+
+- (IBAction)logoutBtn:(id)sender {
+    [[Model instance]logOut:^(NSError *error) {
+        //go to login controller
+        UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LoginViewController* loginVC = [sb instantiateViewControllerWithIdentifier:@"loginViewController"];
+        
+        loginVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self showViewController:loginVC sender:self];
+    }];
+    
+
+    
 }
 
 

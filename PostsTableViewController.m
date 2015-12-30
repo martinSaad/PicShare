@@ -8,8 +8,8 @@
 
 #import "PostsTableViewController.h"
 #import "PostsTableViewCell.h"
+#import "LoginViewController.h"
 #import "Model.h"
-#import "Post.h"
 @interface PostsTableViewController ()
 
 @end
@@ -18,6 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //if user is not connected - go to login screen
+    [self checkIfUserIsConnected];
+    
     photosArr = [[NSMutableArray alloc]init];
     
     //get users who i follow
@@ -39,11 +43,10 @@
     }
     
     //sort the photoObjects by creation date
-    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:YES];
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
     NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
     sortedPhotosObjects = [photosArr sortedArrayUsingDescriptors:sortDescriptors];
     
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,21 +71,22 @@
     int row = indexPath.row;
     PFObject* object = [sortedPhotosObjects objectAtIndex:row];
     
-    __block UIImage* photo;
+    //set image
     [[Model instance] getPhotoFromObject:object block:^(UIImage * image) {
-        photo = image;
-        cell.postImageView.image = photo;
+        cell.postImageView.image = image;
     }];
     
+    //set likes
     [[Model instance]getPhotoLikes:object block:^(NSArray *array) {
         likes = array;
-        int likesCount = [likes count];
-        cell.likes.text = [NSString stringWithFormat:@"%d", likesCount];
+        cell.likes.text = [NSString stringWithFormat:@"%d", [likes count]];
     }];
     
+    //set title
     cell.descri.text = [[Model instance] getPhotoDescription:object];
+    
+    //set hashtag
     cell.hashtag.text = [[Model instance] getPhotoHashTag:object];
-    //TODO add likes description and hashtag
     
     return cell;
 }
@@ -132,6 +136,17 @@
 }
 */
 
+-(void)checkIfUserIsConnected{
+    BOOL connected = [[Model instance]ifUserConnecter];
+    if (!connected){
+        //go to HOME controller
+        UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LoginViewController* loginVC = [sb instantiateViewControllerWithIdentifier:@"loginViewController"];
+        
+        loginVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self showViewController:loginVC sender:self];
+    }
 
+}
 
 @end

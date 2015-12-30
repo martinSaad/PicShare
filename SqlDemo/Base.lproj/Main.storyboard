@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Iyb-7w-KBe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bgt-GX-FcR">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -8,7 +8,7 @@
         <!--Login View Controller-->
         <scene sceneID="2d3-1j-m1s">
             <objects>
-                <viewController id="Iyb-7w-KBe" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="Iyb-7w-KBe" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h70-dj-YG9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,7 +44,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="login"/>
                                 <connections>
-                                    <segue destination="bgt-GX-FcR" kind="modal" identifier="loginSeg" id="uDp-aX-6nP"/>
+                                    <action selector="loginBtn:" destination="Iyb-7w-KBe" eventType="touchUpInside" id="IWL-YQ-7Ec"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8Ek-Hg-4nM">
@@ -166,11 +166,12 @@
                                     <outlet property="delegate" destination="f7T-jH-Hvd" id="fLP-wQ-x35"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="e8Z-uG-7Gl">
-                                <rect key="frame" x="275" y="32" width="22" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="e8Z-uG-7Gl">
+                                <rect key="frame" x="260" y="26" width="52" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="logout"/>
                                 <connections>
-                                    <action selector="optinosBtn:" destination="f7T-jH-Hvd" eventType="touchUpInside" id="JhW-ty-bLs"/>
+                                    <action selector="logoutBtn:" destination="f7T-jH-Hvd" eventType="touchUpInside" id="f4b-Qw-Mzg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CgR-MA-qyg">
@@ -387,7 +388,7 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="IpR-B9-8F9">
             <objects>
-                <tabBarController id="bgt-GX-FcR" customClass="MainTabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainTabBarController" id="bgt-GX-FcR" customClass="MainTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="bKM-6D-PQM"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="q7N-gt-9Yt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -545,6 +546,6 @@
         <image name="location-icon.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uDp-aX-6nP"/>
+        <segue reference="jKF-Hq-XVi"/>
     </inferredMetricsTieBreakers>
 </document>

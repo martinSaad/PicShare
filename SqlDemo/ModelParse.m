@@ -152,8 +152,17 @@
     
 }
 
--(void)signIn:(NSString*)username andPassword:(NSString*)password{
+-(BOOL)signIn:(NSString*)username andPassword:(NSString*)password{
     [PFUser logInWithUsername:username password:password];
+    PFUser* user = [PFUser currentUser];
+    if (user)
+        return YES;
+    
+    return NO;
+}
+
+-(void)logOut{
+    [PFUser logOut];
 }
 
 -(PFGeoPoint*)getCurrentLocation{
@@ -208,6 +217,14 @@
     NSData* data = [file getData];
     UIImage* photo = [UIImage imageWithData:data];
     return photo;
+}
+
+-(BOOL)ifUserConnecter{
+    PFUser* user = [PFUser currentUser];
+    if (user)
+        return YES;
+    
+    return NO;
 }
 
 @end

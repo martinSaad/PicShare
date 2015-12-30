@@ -20,7 +20,8 @@
 -(NSArray*)getWhoFollowsMe;
 
 -(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone;
--(void)signIn:(NSString*)username andPassword:(NSString*)password;
+-(BOOL)signIn:(NSString*)username andPassword:(NSString*)password;
+-(void)logOut;
 -(void)getFacebookUserData;
 -(void)saveUserDetails:(NSString*)name withEmail:(NSString*)email withGender:(NSString*)gender withPhotoUrl:(NSURL*)photoUrl;
 -(PFGeoPoint*)getCurrentLocation;
@@ -38,6 +39,7 @@
 
 
 -(NSArray*)getFollowing;
+-(BOOL)ifUserConnecter;
 
 @end
 
