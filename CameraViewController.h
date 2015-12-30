@@ -14,15 +14,16 @@
     UIImagePickerController* imagePicker;
     UIActionSheet* actionSheet;
     IBOutlet UIImageView *imageView;
+    NSString* imageName;
 }
 - (IBAction)addPicture:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *hashtag;
 @property (weak, nonatomic) IBOutlet UITextField *disc;
 @property BOOL isProfilePic;
-- (IBAction)upload:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *decriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *hashtagLabel;
-@property (weak, nonatomic) IBOutlet UIButton *uploadBtn;
+- (IBAction)uploadBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *uploadBtnLabel;
 
 
 

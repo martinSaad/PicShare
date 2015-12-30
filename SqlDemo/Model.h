@@ -35,8 +35,8 @@
 -(void)logOut:(void(^)(NSError*))block;
 
 //saveing type
--(void)uploadImageAsync:(UIImage*)image description:(NSString*)description hashtag:(NSString*)hashtag block:(void(^)(NSError*))block;
--(void)uploadProfileImageAsync:(UIImage*)image block:(void(^)(NSError*))block;
+-(void)uploadImageAsync:(UIImage*)image description:(NSString*)description hashtag:(NSString*)hashtag imageName:(NSString*)imageName block:(void(^)(NSError*))block;
+-(void)uploadProfileImageAsync:(UIImage*)image imageName:(NSString*)imageName block:(void(^)(NSError*))block;
 -(PFGeoPoint*)getCurrentLocation;
 -(NSString*)getCurrentUser;
 -(void)getProfilePicAsync:(void(^)(UIImage*))block;

@@ -25,35 +25,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    //set the user name.
-//    self.userName.text = [[Model instance] getCurrentUser];
-//    
-//    //set the profile pic in a circle.
-//    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
-//    self.profilePic.clipsToBounds = YES;
-//
-//    
-//    photos = [[NSMutableArray alloc] init];
-//    // __block NSArray* arr = [[NSArray alloc]init];
-//    // Do any additional setup after loading the view.
-//    
-//    PFUser *currentUser = [PFUser currentUser];
-//    if (currentUser) {
-//        photos = [[Model instance]getPFobjects:currentUser];
-//        
-//        [[Model instance]getPhotosFromPFobjectArray:photos block:^(NSArray *arr) {
-//            posts = arr;
-//            [tableView reloadData];
-//        }];
-//        
-//    } else {
-//        // show the signup or login screen
-//    }
-//    
-//    //get profile pic
-//    [[Model instance]getProfilePicAsync:^(UIImage *image) {
-//        self.profilePic.image = image;
-//    }];
+    //set the user name.
+    self.userName.text = [[Model instance] getCurrentUser];
+    
+    //set the profile pic in a circle.
+    self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
+    self.profilePic.clipsToBounds = YES;
+
+    
+    
+    PFUser* user = [PFUser currentUser];
+    photosArr = [[Model instance] getPhotoObjectsSync:user];
+
+    
+    //sort the photoObjects by creation date
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+    sortedPhotosObjects = [photosArr sortedArrayUsingDescriptors:sortDescriptors];
 }
 
 
@@ -64,7 +52,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [posts count];
+    return [sortedPhotosObjects count];
 }
 
 
@@ -74,7 +62,29 @@
     PostsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellProfile" forIndexPath:indexPath];
     
     int row = indexPath.row;
-    cell.postImageView.image = [posts objectAtIndex:row];
+    PFObject* object = [sortedPhotosObjects objectAtIndex:row];
+
+    //set image
+    [[Model instance] getPhotoFromObject:object block:^(UIImage * image) {
+        cell.postImageView.image = image;
+    }];
+    
+    //set profile pic
+    [[Model instance]getProfilePicAsync:^(UIImage *image) {
+        self.profilePic.image = image;
+    }];
+    
+    //set likes
+    [[Model instance]getPhotoLikes:object block:^(NSArray *array) {
+        likes = array;
+        cell.likes.text = [NSString stringWithFormat:@"%d", [likes count]];
+    }];
+    
+    //set title
+    cell.descri.text = [[Model instance] getPhotoDescription:object];
+    
+    //set hashtag
+    cell.hashtag.text = [[Model instance] getPhotoHashTag:object];
     
     return cell;
 
@@ -103,7 +113,7 @@
 }
 
 - (IBAction)profilePicBtn:(id)sender {
-    //go to HOME controller
+//    //go to HOME controller
     UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CameraViewController* cameraVC = [sb instantiateViewControllerWithIdentifier:@"CameraViewController"];
     
@@ -116,11 +126,7 @@
 - (IBAction)logoutBtn:(id)sender {
     [[Model instance]logOut:^(NSError *error) {
         //go to login controller
-        UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        LoginViewController* loginVC = [sb instantiateViewControllerWithIdentifier:@"loginViewController"];
-        
-        loginVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self showViewController:loginVC sender:self];
+        [self performSegueWithIdentifier:@"profileToLogin" sender:self];
     }];
     
 

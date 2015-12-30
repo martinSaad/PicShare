@@ -19,34 +19,43 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //if user is not connected - go to login screen
-    [self checkIfUserIsConnected];
-    
-    photosArr = [[NSMutableArray alloc]init];
-    
-    //get users who i follow
-    followingUsers = [[Model instance] getFollowing];
-    
-    
-    //for each user, get an array of his photos objects (PFObject)
-    photoObjects = [[NSMutableArray alloc]init];
-    for (PFUser* user in followingUsers){
-        NSArray* objects = [[Model instance] getPhotoObjectsSync:user];
-        [photoObjects addObject:objects];
-    }
-    
-    //save all photos regardless who is the user taht created it
-    for (NSArray* arr in photoObjects){
-        for (PFObject* obj in arr){
-            [photosArr addObject:obj];
+    //if user is not logged in - skip this code
+    if ([self checkIfUserIsConnected]){
+        photosArr = [[NSMutableArray alloc]init];
+        
+        //get users who I follow
+        followingUsers = [[Model instance] getFollowing];
+        
+        
+        //for each user, get an array of his photos objects (PFObject)
+        photoObjects = [[NSMutableArray alloc]init];
+        for (PFUser* user in followingUsers){
+            NSArray* objects = [[Model instance] getPhotoObjectsSync:user];
+            [photoObjects addObject:objects];
         }
+        
+        //save all photos regardless who is the user taht created it
+        for (NSArray* arr in photoObjects){
+            for (PFObject* obj in arr){
+                [photosArr addObject:obj];
+            }
+        }
+        
+        //sort the photoObjects by creation date
+        NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+        sortedPhotosObjects = [photosArr sortedArrayUsingDescriptors:sortDescriptors];
     }
     
-    //sort the photoObjects by creation date
-    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
-    sortedPhotosObjects = [photosArr sortedArrayUsingDescriptors:sortDescriptors];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     
+    //if user is not connected - go to login screen
+    if (!isUserLoggedIn){
+        [self performSegueWithIdentifier:@"login" sender:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -136,17 +145,9 @@
 }
 */
 
--(void)checkIfUserIsConnected{
-    BOOL connected = [[Model instance]ifUserConnecter];
-    if (!connected){
-        //go to HOME controller
-        UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        LoginViewController* loginVC = [sb instantiateViewControllerWithIdentifier:@"loginViewController"];
-        
-        loginVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self showViewController:loginVC sender:self];
-    }
-
+-(BOOL)checkIfUserIsConnected{
+    isUserLoggedIn = [[Model instance]ifUserConnecter];
+    return isUserLoggedIn;
 }
 
 @end

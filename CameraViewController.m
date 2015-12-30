@@ -10,6 +10,7 @@
 #import "Model.h"
 #import "PostsTableViewController.h"
 #import "ProfileViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @implementation CameraViewController
 
@@ -28,7 +29,7 @@
         self.decriptionLabel.hidden = YES;
     }
     
-    [self.uploadBtn setEnabled:NO];
+    [self.uploadBtnLabel setEnabled:NO];
 }
 
 - (IBAction)addPicture:(id)sender {
@@ -89,53 +90,57 @@
     
     [imageView setImage:image];
     
-    [self.uploadBtn setEnabled:YES];
+    [self.uploadBtnLabel setEnabled:YES];
+    
+    //get image name
+    // get the ref url
+    NSURL *refURL = [info valueForKey:UIImagePickerControllerReferenceURL];
+    
+    // define the block to call when we get the asset based on the url (below)
+    ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *imageAsset)
+    {
+        ALAssetRepresentation *imageRep = [imageAsset defaultRepresentation];
+        NSLog(@"[imageRep filename] : %@", [imageRep filename]);
+        imageName = [imageRep filename];
+    };
+    
+    // get the asset library and fetch the asset based on the ref url (pass in block above)
+    ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
+    [assetslibrary assetForURL:refURL resultBlock:resultblock failureBlock:nil];
 
     
     [imagePicker dismissViewControllerAnimated:YES completion:nil];
     
 }
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([segue.identifier isEqualToString:@"upload"]){
-        UIImage* image = [imageView image];
-        [[Model instance]uploadImageAsync:image description:self.disc.text hashtag:self.hashtag.text block:^(NSError *error) {
-            
-        }];
-    }
-}
+//// In a storyboard-based application, you will often want to do a little preparation before navigation
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    UIImage* image = [imageView image];
+//    
+//    if(!self.isProfilePic){
+//        [[Model instance] uploadImageAsync:image description:self.disc.text hashtag:self.hashtag.text imageName:imageName block:^(NSError *error) {
+//            [self performSegueWithIdentifier:@"uploadPhotoToFeed" sender:self];
+//        }];
+//    }
+//    else{
+//        [[Model instance]uploadProfileImageAsync:image imageName:imageName block:^(NSError *error) {
+//            [self performSegueWithIdentifier:@"uploadProfilePic" sender:self];
+//        }];
+//    }
+//}
 
-- (IBAction)upload:(id)sender {
-    if (self.isProfilePic == NO){
-        //upload image
-        UIImage* image = [imageView image];
-        [[Model instance]uploadImageAsync:image description:self.disc.text hashtag:self.hashtag.text block:^(NSError *error) {
-            
-        }];
-        
-        //go to HOME controller
-        UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        PostsTableViewController* postsVC = [sb instantiateViewControllerWithIdentifier:@"PostsViewController"];
-        
-        postsVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self showViewController:postsVC sender:self];
-    }
+- (IBAction)uploadBtn:(id)sender {
+    UIImage* image = [imageView image];
     
-    //if the method is called from the profile pic (profile controller)
-    else{
-        //upload image
-        UIImage* image = [imageView image];
-        [[Model instance]uploadImageAsync:image description:self.disc.text hashtag:self.hashtag.text block:^(NSError *error) {
-            
+    if(!self.isProfilePic){
+        [[Model instance] uploadImageAsync:image description:self.disc.text hashtag:self.hashtag.text imageName:imageName block:^(NSError *error) {
+            [self performSegueWithIdentifier:@"uploadPhotoToFeed" sender:self];
         }];
-        
-        //go to HOME controller
-        UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        PostsTableViewController* profileVC = [sb instantiateViewControllerWithIdentifier:@"ProfileViewController"];
-        
-        profileVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self showViewController:profileVC sender:self];
+    }
+    else{
+        [[Model instance]uploadProfileImageAsync:image imageName:imageName block:^(NSError *error) {
+            [self performSegueWithIdentifier:@"uploadProfilePic" sender:self];
+        }];
     }
 }
 @end

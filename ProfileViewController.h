@@ -14,6 +14,9 @@
     NSArray* photos;
     NSArray* posts;
     IBOutlet UITableView* tableView;
+    NSArray* photosArr;
+    NSArray* sortedPhotosObjects;
+    NSArray* likes;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *userName;

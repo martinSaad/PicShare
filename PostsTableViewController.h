@@ -16,7 +16,8 @@
     NSArray* sortedPhotosObjects;
     NSMutableArray* photoObjects;
     NSMutableArray* photosArr;
+    BOOL isUserLoggedIn;
 }
 
--(void)checkIfUserIsConnected;
+-(BOOL)checkIfUserIsConnected;
 @end

@@ -198,6 +198,7 @@
                         <outlet property="profilePic" destination="D0P-uX-yzz" id="qdG-A5-PpY"/>
                         <outlet property="tableView" destination="enr-Ye-fBs" id="Lby-LL-hGR"/>
                         <outlet property="userName" destination="rsx-Xg-fXR" id="hFh-3t-KsZ"/>
+                        <segue destination="Iyb-7w-KBe" kind="modal" identifier="profileToLogin" id="cdB-bf-rjv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="152-Cu-huy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -251,7 +252,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="upload"/>
                                 <connections>
-                                    <action selector="upload:" destination="Qum-lT-j2I" eventType="touchUpInside" id="sCd-cH-83L"/>
+                                    <action selector="uploadBtn:" destination="Qum-lT-j2I" eventType="touchUpInside" id="Y4q-bt-4PK"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="jZa-2t-BRY">
@@ -283,7 +284,9 @@
                         <outlet property="hashtag" destination="HjD-n8-6zn" id="OJO-P9-CPg"/>
                         <outlet property="hashtagLabel" destination="hln-Sx-13f" id="aEf-Ho-dXh"/>
                         <outlet property="imageView" destination="89f-Ic-tuR" id="Toq-G8-QQc"/>
-                        <outlet property="uploadBtn" destination="PT2-FQ-uQd" id="Hzc-Yt-FfF"/>
+                        <outlet property="uploadBtnLabel" destination="PT2-FQ-uQd" id="Utw-qU-26r"/>
+                        <segue destination="f7T-jH-Hvd" kind="modal" identifier="uploadProfilePic" id="fEb-oG-SrW"/>
+                        <segue destination="ORX-BW-Lxt" kind="modal" identifier="uploadPhotoToFeed" id="NkP-EL-V2R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4c-Gi-NOS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -380,6 +383,9 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Home" image="Home-25.png" id="HKj-YU-8yS"/>
                     <navigationItem key="navigationItem" id="UWG-7i-zck"/>
+                    <connections>
+                        <segue destination="Iyb-7w-KBe" kind="modal" identifier="login" id="KL4-eO-LPW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fpe-oj-cgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -547,5 +553,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jKF-Hq-XVi"/>
+        <segue reference="cdB-bf-rjv"/>
+        <segue reference="fEb-oG-SrW"/>
+        <segue reference="NkP-EL-V2R"/>
     </inferredMetricsTieBreakers>
 </document>
