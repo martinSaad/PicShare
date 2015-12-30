@@ -11,7 +11,8 @@
 @interface PostsTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *postImageView;
 @property (weak, nonatomic) IBOutlet UILabel *likes;
-@property (weak, nonatomic) IBOutlet UILabel *description;
+@property (weak, nonatomic) IBOutlet UILabel *descri;
 @property (weak, nonatomic) IBOutlet UILabel *hashtag;
+
 
 @end

@@ -79,7 +79,9 @@
         int likesCount = [likes count];
         cell.likes.text = [NSString stringWithFormat:@"%d", likesCount];
     }];
-
+    
+    cell.descri.text = [[Model instance] getPhotoDescription:object];
+    cell.hashtag.text = [[Model instance] getPhotoHashTag:object];
     //TODO add likes description and hashtag
     
     return cell;
