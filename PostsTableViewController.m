@@ -23,9 +23,11 @@
     if ([self checkIfUserIsConnected]){
         photosArr = [[NSMutableArray alloc]init];
         
-        //get users who I follow
-        followingUsers = [[Model instance] getFollowing];
+        PFUser* user = [PFUser currentUser];
         
+        //get users who I follow
+        followingUsers = [[Model instance] getFollowing:user];
+        [self.tableView reloadData];
         
         //for each user, get an array of his photos objects (PFObject)
         photoObjects = [[NSMutableArray alloc]init];
@@ -80,6 +82,7 @@
     int row = indexPath.row;
     PFObject* object = [sortedPhotosObjects objectAtIndex:row];
     
+    
     //set image
     [[Model instance] getPhotoFromObject:object block:^(UIImage * image) {
         cell.postImageView.image = image;
@@ -96,6 +99,11 @@
     
     //set hashtag
     cell.hashtag.text = [[Model instance] getPhotoHashTag:object];
+    
+    //set username
+    [[Model instance] getUserNameFromObject:object block:^(NSString *name) {
+        cell.username.text = name;
+    }];
     
     return cell;
 }
@@ -144,6 +152,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)likeBtn:(id)sender {
+    
+}
 
 -(BOOL)checkIfUserIsConnected{
     isUserLoggedIn = [[Model instance]ifUserConnecter];

@@ -8,14 +8,14 @@
 
 #import "ProfileViewController.h"
 #import "Model.h"
-#import "Post.h"
 #import "PostsTableViewCell.h"
 #import "CameraViewController.h"
 #import "LoginViewController.h"
+#import "UsersTableViewController.h"
 
 
 @interface ProfileViewController ()
-- (void)configureView;
+
 
 @end
 
@@ -25,23 +25,84 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //set the user name.
-    self.userName.text = [[Model instance] getCurrentUser];
-    
+
     //set the profile pic in a circle.
     self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
     self.profilePic.clipsToBounds = YES;
 
+    if (self.selectedUser == nil){
+        //set profile pic
+        [[Model instance] getProfilePicAsync:^(UIImage *pic) {
+            self.profilePic.image = pic;
+        }];
+        
+        //dismisse followingOrNot
+        self.followingOrNot.hidden = YES;
+        
+        //set the user name.
+        self.userName.text = [[Model instance] getCurrentUser];
+        user = [PFUser currentUser];
+        
+        photosArr = [[Model instance] getPhotoObjectsSync:user];
+        
+        
+        //sort the photoObjects by creation date
+        NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+        sortedPhotosObjects = [photosArr sortedArrayUsingDescriptors:sortDescriptors];
+        
+        //setting number of posts,following,follwers
+        self.postsNumber.text = [NSString stringWithFormat:@"%d", [sortedPhotosObjects count]];
+        
+        [[Model instance] getFollowingUsersAsync:user block:^(NSArray *following) {
+            self.followNumber.text = [NSString stringWithFormat:@"%d",[following count]];
+        }];
+        
+        [[Model instance] getWhoFollowsMeAsync:user block:^(NSArray *whoFollowingMe) {
+            self.followingNumber.text = [NSString stringWithFormat:@"%d",[whoFollowingMe count]];
+        }];
+    }
     
+    //else there is a user selected - shot users details
+    else{
+        [[Model instance] doIFollowThisUser:self.selectedUser block:^(BOOL result) {
+            if (result)
+                [self.followingOrNot setOn:YES];
+            else
+                [self.followingOrNot setOn:NO];
+        }];
+        
+        //set profile pic
+        [[Model instance] getProfilePicAsync:self.selectedUser block:^(UIImage *pic) {
+            self.profilePic.image = pic;
+        }];
+        
+        //set username
+        [[Model instance]getUserNameFromUserObject:self.selectedUser block:^(NSString *name) {
+            self.userName.text = name;
+        }];
+        
+        photosArr = [[Model instance] getPhotoObjectsSync:self.selectedUser];
+        
+        
+        //sort the photoObjects by creation date
+        NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+        sortedPhotosObjects = [photosArr sortedArrayUsingDescriptors:sortDescriptors];
+        
+        //setting number of posts,following,follwers
+        self.postsNumber.text = [NSString stringWithFormat:@"%d", [sortedPhotosObjects count]];
+        
+        [[Model instance] getFollowingUsersAsync:self.selectedUser block:^(NSArray *following) {
+            self.followNumber.text = [NSString stringWithFormat:@"%d",[following count]];
+        }];
+        
+        [[Model instance] getWhoFollowsMeAsync:self.selectedUser block:^(NSArray *whoFollowingMe) {
+            self.followingNumber.text = [NSString stringWithFormat:@"%d",[whoFollowingMe count]];
+        }];
+    }
     
-    PFUser* user = [PFUser currentUser];
-    photosArr = [[Model instance] getPhotoObjectsSync:user];
 
-    
-    //sort the photoObjects by creation date
-    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
-    sortedPhotosObjects = [photosArr sortedArrayUsingDescriptors:sortDescriptors];
 }
 
 
@@ -69,10 +130,10 @@
         cell.postImageView.image = image;
     }];
     
-    //set profile pic
-    [[Model instance]getProfilePicAsync:^(UIImage *image) {
-        self.profilePic.image = image;
-    }];
+//    //set profile pic
+//    [[Model instance]getProfilePicAsync:^(UIImage *image) {
+//        self.profilePic.image = image;
+//    }];
     
     //set likes
     [[Model instance]getPhotoLikes:object block:^(NSArray *array) {
@@ -90,17 +151,40 @@
 
 }
 
-
-
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if ([segue.identifier isEqualToString:@"followUsers"]) {
+//        UsersTableViewController* usersVC = segue.destinationViewController;
+//        [[Model instance]getFollowingUsersAsync:^(NSArray *followingUsers) {
+//            usersVC.users = followingUsers;
+//        }];
+//    }
+//}
 
 - (IBAction)followBtn:(id)sender {
+    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UsersTableViewController* usersVC = [sb instantiateViewControllerWithIdentifier:@"usersTableViewController"];
+    
+    usersVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [[Model instance]getFollowingUsersAsync:user block:^(NSArray *followingUsers) {
+        usersVC.users = followingUsers;
+        //[self.navigationController pushViewController:usersVC animated:YES];
+        [self showViewController:usersVC sender:self];
+    }];
+    
 }
 
 - (IBAction)followingBtn:(id)sender {
+    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UsersTableViewController* usersVC = [sb instantiateViewControllerWithIdentifier:@"usersTableViewController"];
+    
+    usersVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [[Model instance] getWhoFollowsMeAsync:user block:^(NSArray *whoFollowsMe) {
+        usersVC.users = whoFollowsMe;
+        //[self.navigationController pushViewController:usersVC animated:YES];
+        [self showViewController:usersVC sender:self];
+    }];
 }
 
-- (IBAction)optinosBtn:(id)sender {
-}
 
 
 - (IBAction)picsBtn:(id)sender {
@@ -113,7 +197,7 @@
 }
 
 - (IBAction)profilePicBtn:(id)sender {
-//    //go to HOME controller
+//    //go to camera controller
     UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CameraViewController* cameraVC = [sb instantiateViewControllerWithIdentifier:@"CameraViewController"];
     
@@ -121,6 +205,7 @@
     cameraVC.isProfilePic = YES;
     [self showViewController:cameraVC sender:self];
 
+    
 }
 
 - (IBAction)logoutBtn:(id)sender {
@@ -133,18 +218,9 @@
     
 }
 
-
-
-
-- (IBAction)tagBtn:(id)sender {
+- (IBAction)followingOrNotBtn:(id)sender {
+    
 }
-
-- (IBAction)likeBtn:(id)sender {
-}
-
-- (IBAction)picBtn:(id)sender {
-}
-
 @end
 
 

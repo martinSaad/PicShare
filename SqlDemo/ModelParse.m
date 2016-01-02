@@ -23,38 +23,60 @@
     return self;
 }
 
--(NSArray*)getFollowingUsers{
-    PFUser* currentUser = [PFUser currentUser];
+-(NSArray*)getFollowingUsers:(PFUser*)user{
     
     PFQuery* query = [PFQuery queryWithClassName:FOLLOWERS_TABLE];
-    [query whereKey:USER equalTo:currentUser];
+    [query whereKey:USER equalTo:user];
     NSArray* res = [query findObjects];
-    
-    //res is an array with only 1 result
-    PFObject* object = [res objectAtIndex:0];
-    PFRelation *relation = [object relationForKey:FOLLOWING];
-    PFQuery *queryRelation = [relation query];
-    NSArray* following = [queryRelation findObjects];
-    
-    
+    NSArray* following;
+    if ([res count] == 1){
+        //res is an array with only 1 result
+        PFObject* object = [res objectAtIndex:0];
+        PFRelation *relation = [object relationForKey:FOLLOWING];
+        PFQuery *queryRelation = [relation query];
+        following = [queryRelation findObjects];
+    }
     return following;
 }
 
 
--(NSArray*)getWhoFollowsMe{
-    PFUser* currentUser = [PFUser currentUser];
+-(NSArray*)getWhoFollowsMe:(PFUser*)user{
     
+    PFQuery* query = [PFQuery queryWithClassName:FOLLOWERS_TABLE];
+    [query whereKey:USER equalTo:user];
+    NSArray* res = [query findObjects];
+    NSArray* whoFollowsMe;
+    if ([res count] == 1){
+        //res is an array with only 1 result
+        PFObject* object = [res objectAtIndex:0];
+        PFRelation *relation = [object relationForKey:WHO_FOLLOWS_ME];
+        PFQuery *queryRelation = [relation query];
+        whoFollowsMe = [queryRelation findObjects];
+    }
+
+    
+    return whoFollowsMe;
+}
+
+-(BOOL)doIFollowThisUser:(PFUser*)user{
+    NSArray* following;
+    PFUser* currentUser = [PFUser currentUser];
     PFQuery* query = [PFQuery queryWithClassName:FOLLOWERS_TABLE];
     [query whereKey:USER equalTo:currentUser];
     NSArray* res = [query findObjects];
-    
-    //res is an array with only 1 result
-    PFObject* object = [res objectAtIndex:0];
-    PFRelation *relation = [object relationForKey:WHO_FOLLOWS_ME];
-    PFQuery *queryRelation = [relation query];
-    NSArray* whoFollowsMe = [queryRelation findObjects];
-    
-    return whoFollowsMe;
+    if ([res count] == 1){
+        //res is an array with only 1 result
+        PFObject* object = [res objectAtIndex:0];
+        PFRelation *relation = [object relationForKey:FOLLOWING];
+        PFQuery *queryRelation = [relation query];
+        following = [queryRelation findObjects];
+        
+        for (PFUser* userWhoIFollow in following){
+            if ([userWhoIFollow.objectId isEqualToString:user.objectId])
+                return YES;
+        }
+    }
+    return NO;
 }
 
 
@@ -179,7 +201,8 @@
     PFFile *imageFile = [PFFile fileWithName:description data:imageData];
     
     PFObject *userPhoto = [PFObject objectWithClassName:PHOTO_TABLE];
-    userPhoto[USER] = [PFUser currentUser];
+    //userPhoto[USER] = [PFUser currentUser];
+    [userPhoto setObject:[PFUser currentUser] forKey:USER];
     userPhoto[PICTURE] = imageFile;
     userPhoto[DESCRIPTION] = description;
     userPhoto[HASHTAG] = hashtag;
@@ -219,12 +242,36 @@
     return photo;
 }
 
+-(UIImage*)getProfilePic:(PFUser*)user{
+    PFFile* file = user[PROFILE_PIC];
+    NSData* data = [file getData];
+    UIImage* photo = [UIImage imageWithData:data];
+    return photo;
+}
+
 -(BOOL)ifUserConnecter{
     PFUser* user = [PFUser currentUser];
     if (user)
         return YES;
     
     return NO;
+}
+
+-(NSString*)getUserNameFromObject:(PFObject*)object{
+    PFUser* user = [object objectForKey:USER];
+    [user fetchIfNeeded];
+    
+    NSString* firstName = user[FIRST_NAME];
+    NSString* lastName = user[LAST_NAME];
+    
+    return [NSString stringWithFormat:@"%@ %@",firstName,lastName];
+}
+
+-(NSString*)getUserNameFromUserObject:(PFUser *)user{
+    NSString* firstName = user[FIRST_NAME];
+    NSString* lastName = user[LAST_NAME];
+    
+    return [NSString stringWithFormat:@"%@ %@",firstName,lastName];
 }
 
 @end

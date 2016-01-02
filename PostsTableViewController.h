@@ -19,5 +19,6 @@
     BOOL isUserLoggedIn;
 }
 
+- (IBAction)likeBtn:(id)sender;
 -(BOOL)checkIfUserIsConnected;
 @end

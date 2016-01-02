@@ -11,35 +11,42 @@
 @protocol ModelProtocol <NSObject>
 
 
+//users
+-(NSArray*)getFollowingUsers:(PFUser*)user;
+-(NSArray*)getWhoFollowsMe:(PFUser*)user;
+-(NSString*)getCurrentUser;
+-(NSString*)getUserNameFromUserObject:(PFUser*)user;
+-(BOOL)doIFollowThisUser:(PFUser*)user;
 
-//-(NSArray*)getPhotos:(PFUser*)user;
--(UIImage*)getPhotoFromObject:(PFObject*)object;
--(NSArray*)getPhotoLikes:(PFObject*)object;
-
--(NSArray*)getFollowingUsers;
--(NSArray*)getWhoFollowsMe;
-
+//login logout
 -(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone;
 -(BOOL)signIn:(NSString*)username andPassword:(NSString*)password;
 -(void)logOut;
+-(BOOL)ifUserConnecter;
+
+
+//facebook
 -(void)getFacebookUserData;
 -(void)saveUserDetails:(NSString*)name withEmail:(NSString*)email withGender:(NSString*)gender withPhotoUrl:(NSURL*)photoUrl;
+
+
+//location
 -(PFGeoPoint*)getCurrentLocation;
--(void)uploadImage:(UIImage*)image description:(NSString*)description hashtag:(NSString*)hashtag;
--(void)uploadProfileImage:(UIImage*)image;
--(UIImage*)getProfilePic;
-
--(NSArray*)getPhotoObjects:(PFUser*)user;
--(NSString*)getCurrentUser;
 
 
+//photo
+-(UIImage*)getPhotoFromObject:(PFObject*)object;
+-(NSArray*)getPhotoLikes:(PFObject*)object;
 -(NSString*)getPhotoDescription:(PFObject*)object;
 -(NSString*)getPhotoHashTag:(PFObject*)object;
+-(NSString*)getUserNameFromObject:(PFObject*)object;
+-(UIImage*)getProfilePic:(PFUser*)user;
+-(UIImage*)getProfilePic;
+-(void)uploadImage:(UIImage*)image description:(NSString*)description hashtag:(NSString*)hashtag;
+-(void)uploadProfileImage:(UIImage*)image;
+-(NSArray*)getPhotoObjects:(PFUser*)user;
 
 
-
--(NSArray*)getFollowing;
--(BOOL)ifUserConnecter;
 
 @end
 

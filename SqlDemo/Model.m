@@ -33,23 +33,23 @@ static Model* instance = nil;
     return self;
 }
 
--(NSArray*)getFollowing{
-    return [modelImpl getFollowingUsers];
-}
+
 
 -(NSArray*)getPhotoObjectsSync:(PFUser*)user{
     return [modelImpl getPhotoObjects:user];
 }
 
-
+-(NSArray*)getFollowing:(PFUser*)user{
+    return [modelImpl getFollowingUsers:user];
+}
 
 //Block Asynch implementation
--(void)getFollowingUsersAsync:(void(^)(NSArray*))blockListener{
+-(void)getFollowingUsersAsync:(PFUser*)user block:(void(^)(NSArray*))blockListener{
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
         //long operation
-        NSArray* data = [modelImpl getFollowingUsers];
+        NSArray* data = [modelImpl getFollowingUsers:user];
         
         //end of long operation - update display in the main Q
         dispatch_queue_t mainQ = dispatch_get_main_queue();
@@ -60,17 +60,32 @@ static Model* instance = nil;
 }
 
 //Block Asynch implementation
--(void)getWhoFollowsMeAsync:(void(^)(NSArray*))blockListener{
+-(void)getWhoFollowsMeAsync:(PFUser*)user block:(void(^)(NSArray*))blockListener{
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
         //long operation
-        NSArray* data = [modelImpl getWhoFollowsMe];
+        NSArray* data = [modelImpl getWhoFollowsMe:user];
         
         //end of long operation - update display in the main Q
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
             blockListener(data);
+        });
+    } );
+}
+
+-(void)doIFollowThisUser:(PFUser*)user block:(void(^)(BOOL))block{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        //long operation
+        BOOL data = [modelImpl doIFollowThisUser:user];
+        
+        //end of long operation - update display in the main Q
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(data);
         });
     } );
 }
@@ -205,6 +220,32 @@ static Model* instance = nil;
     } );
 }
 
+-(void)getUserNameFromObject:(PFObject*)object block:(void(^)(NSString*))block{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        NSString* result = [modelImpl getUserNameFromObject:object];
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(result);
+        });
+    } );
+}
+
+-(void)getUserNameFromUserObject:(PFUser*)user block:(void(^)(NSString*))block{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        NSString* result = [modelImpl getUserNameFromUserObject:user];
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(result);
+        });
+    } );
+}
+
 -(NSString*)getCurrentUser{
     return [modelImpl getCurrentUser];
 }
@@ -215,6 +256,19 @@ static Model* instance = nil;
     
     dispatch_async(myQueue, ^{
         UIImage* profilePic = [modelImpl getProfilePic];
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(profilePic);
+        });
+    } );
+}
+
+-(void)getProfilePicAsync:(PFUser*)user block:(void(^)(UIImage*))block{
+    dispatch_queue_t myQueue =    dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        UIImage* profilePic = [modelImpl getProfilePic:user];
         
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
