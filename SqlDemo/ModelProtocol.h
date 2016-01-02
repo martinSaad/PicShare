@@ -17,6 +17,8 @@
 -(NSString*)getCurrentUser;
 -(NSString*)getUserNameFromUserObject:(PFUser*)user;
 -(BOOL)doIFollowThisUser:(PFUser*)user;
+-(void)followUser:(PFUser*)user;
+-(void)unFollowUser:(PFUser*)user;
 
 //login logout
 -(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone;

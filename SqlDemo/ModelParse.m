@@ -58,6 +58,62 @@
     return whoFollowsMe;
 }
 
+-(void)followUser:(PFUser *)user{
+    //add user to my FOLLOWING column
+    PFUser* currentUser = [PFUser currentUser];
+    PFQuery* query = [PFQuery queryWithClassName:FOLLOWERS_TABLE];
+    [query whereKey:USER equalTo:currentUser];
+    NSArray* res = [query findObjects];
+    if ([res count] == 1){
+        //res is an array with only 1 result
+        PFObject* object = [res objectAtIndex:0];
+        PFRelation *relation = [object relationForKey:FOLLOWING];
+        [relation addObject:user];
+        [object save];
+    }
+    
+    //add me to the users WHO_FOLLOWS_ME column
+    PFQuery* query2 = [PFQuery queryWithClassName:FOLLOWERS_TABLE];
+    [query2 whereKey:USER equalTo:user];
+    NSArray* res2 = [query2 findObjects];
+    if ([res2 count] == 1){
+        //res is an array with only 1 result
+        PFObject* object = [res2 objectAtIndex:0];
+        PFRelation *relation = [object relationForKey:WHO_FOLLOWS_ME];
+        [relation addObject:currentUser];
+        [object save];
+    }
+}
+
+-(void)unFollowUser:(PFUser *)user{
+    PFUser* currentUser = [PFUser currentUser];
+    
+    //remove user from my FOLLOWING column
+    PFQuery* query = [PFQuery queryWithClassName:FOLLOWERS_TABLE];
+    [query whereKey:USER equalTo:currentUser];
+    NSArray* res = [query findObjects];
+    if ([res count] == 1){
+        //res is an array with only 1 result
+        PFObject* object = [res objectAtIndex:0];
+        PFRelation *relation = [object relationForKey:FOLLOWING];
+        [relation removeObject:user];
+        [object save];
+    }
+    
+    //remove me from the users WHO_FOLLOWS_ME column
+    PFQuery* query2 = [PFQuery queryWithClassName:FOLLOWERS_TABLE];
+    [query2 whereKey:USER equalTo:user];
+    NSArray* res2 = [query2 findObjects];
+    if ([res2 count] == 1){
+        //res is an array with only 1 result
+        PFObject* object = [res2 objectAtIndex:0];
+        PFRelation *relation = [object relationForKey:WHO_FOLLOWS_ME];
+        [relation removeObject:currentUser];
+        [object save];
+    }
+
+}
+
 -(BOOL)doIFollowThisUser:(PFUser*)user{
     NSArray* following;
     PFUser* currentUser = [PFUser currentUser];

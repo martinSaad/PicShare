@@ -130,11 +130,6 @@
         cell.postImageView.image = image;
     }];
     
-//    //set profile pic
-//    [[Model instance]getProfilePicAsync:^(UIImage *image) {
-//        self.profilePic.image = image;
-//    }];
-    
     //set likes
     [[Model instance]getPhotoLikes:object block:^(NSArray *array) {
         likes = array;
@@ -219,7 +214,35 @@
 }
 
 - (IBAction)followingOrNotBtn:(id)sender {
-    
+    //if press to unfollow
+    if (![self.followingOrNot isOn]){
+        [[Model instance] unFollowUser:self.selectedUser block:^(NSError *error) {
+            [self.followingOrNot setOn:NO];
+            
+            //update following,followers
+            [[Model instance] getFollowingUsersAsync:self.selectedUser block:^(NSArray *following) {
+                self.followNumber.text = [NSString stringWithFormat:@"%d",[following count]];
+            }];
+            
+            [[Model instance] getWhoFollowsMeAsync:self.selectedUser block:^(NSArray *whoFollowingMe) {
+                self.followingNumber.text = [NSString stringWithFormat:@"%d",[whoFollowingMe count]];
+            }];
+        }];
+    }
+    else{ //if press to follow
+        [[Model instance] followUser:self.selectedUser block:^(NSError *error) {
+            [self.followingOrNot setOn:YES];
+            
+            //update following,followers
+            [[Model instance] getFollowingUsersAsync:self.selectedUser block:^(NSArray *following) {
+                self.followNumber.text = [NSString stringWithFormat:@"%d",[following count]];
+            }];
+            
+            [[Model instance] getWhoFollowsMeAsync:self.selectedUser block:^(NSArray *whoFollowingMe) {
+                self.followingNumber.text = [NSString stringWithFormat:@"%d",[whoFollowingMe count]];
+            }];
+        }];
+    }
 }
 @end
 

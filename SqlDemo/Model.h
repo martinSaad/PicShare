@@ -25,6 +25,8 @@
 -(NSString*)getCurrentUser;
 -(void)getUserNameFromUserObject:(PFUser*)user block:(void(^)(NSString*))block;
 -(void)doIFollowThisUser:(PFUser*)user block:(void(^)(BOOL))block;
+-(void)followUser:(PFUser*)user block:(void(^)(NSError*))block;
+-(void)unFollowUser:(PFUser*)user block:(void(^)(NSError*))block;
 
 
 //login logut
