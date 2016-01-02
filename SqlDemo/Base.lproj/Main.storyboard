@@ -439,7 +439,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Button" image="jAXezevs_400x400.jpeg"/>
                                             <connections>
-                                                <action selector="likeBtn:" destination="ORX-BW-Lxt" eventType="touchUpInside" id="FA8-AY-DTe"/>
+                                                <action selector="likeBtnAction:" destination="ORX-BW-Lxt" eventType="touchUpInside" id="NOe-de-KQB"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r2R-PG-Lbw">
@@ -482,6 +482,7 @@
                                 <connections>
                                     <outlet property="descri" destination="vIP-hh-bKP" id="xSQ-2i-6qo"/>
                                     <outlet property="hashtag" destination="qxT-ND-zpm" id="iCX-0h-oDR"/>
+                                    <outlet property="likeBtn" destination="UNH-9b-aMl" id="9Jw-Ug-n3d"/>
                                     <outlet property="likes" destination="r2R-PG-Lbw" id="6PB-E3-2Md"/>
                                     <outlet property="postImageView" destination="cCN-Yp-H13" id="XeV-LM-gow"/>
                                     <outlet property="username" destination="Tkx-tb-DfV" id="lI6-47-ok8"/>
@@ -665,8 +666,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jKF-Hq-XVi"/>
-        <segue reference="cdB-bf-rjv"/>
-        <segue reference="fEb-oG-SrW"/>
+        <segue reference="KL4-eO-LPW"/>
         <segue reference="NkP-EL-V2R"/>
+        <segue reference="fEb-oG-SrW"/>
     </inferredMetricsTieBreakers>
 </document>

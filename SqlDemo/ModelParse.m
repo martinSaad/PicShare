@@ -114,6 +114,31 @@
 
 }
 
+-(void)likeAPhoto:(PFObject *)photoObject{
+    PFUser* currentUser = [PFUser currentUser];
+    
+    PFRelation *relation = [photoObject relationForKey:LIKES];
+    PFQuery *queryRelation = [relation query];
+    NSArray* likes = [queryRelation findObjects];
+    
+    //check if I'm in the likes users. if not - add me. if yes - remove me
+    BOOL flag = NO;
+    for (PFUser* user in likes){
+        if ([user.objectId isEqualToString:currentUser.objectId]){
+            flag = YES;
+            break;
+        }
+    }
+    if (flag == NO){
+        [relation addObject:currentUser];
+    }
+    else{
+        [relation removeObject:currentUser];
+    }
+    
+    [photoObject save];
+}
+
 -(BOOL)doIFollowThisUser:(PFUser*)user{
     NSArray* following;
     PFUser* currentUser = [PFUser currentUser];

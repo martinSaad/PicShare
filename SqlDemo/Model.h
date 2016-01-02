@@ -51,9 +51,9 @@
 -(void)uploadImageAsync:(UIImage*)image description:(NSString*)description hashtag:(NSString*)hashtag imageName:(NSString*)imageName block:(void(^)(NSError*))block;
 -(void)uploadProfileImageAsync:(UIImage*)image imageName:(NSString*)imageName block:(void(^)(NSError*))block;
 -(void)getPhotoObjects:(PFUser*)user block:(void(^)(NSArray*))block;
-
 -(void)getPhotoFromObject:(PFObject*)object block:(void(^)(UIImage*))block;
 
+-(void)likeAPhoto:(PFObject*)photoObject block:(void(^)(NSError*))block;
 
 
 @end

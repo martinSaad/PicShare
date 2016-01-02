@@ -105,6 +105,8 @@
         cell.username.text = name;
     }];
     
+    cell.likeBtn.tag = row;
+    
     return cell;
 }
 
@@ -153,8 +155,19 @@
 }
 */
 
-- (IBAction)likeBtn:(id)sender {
+
+- (IBAction)likeBtnAction:(id)sender {
+    UIButton *senderButton = (UIButton *)sender;
+    NSLog(@"current Row=%d",senderButton.tag);
     
+    NSIndexPath *path = [NSIndexPath indexPathForRow:senderButton.tag inSection:0];
+    NSMutableArray* arr = [[NSMutableArray alloc]init];
+    [arr addObject:path];
+    
+    PFObject* object = [sortedPhotosObjects objectAtIndex:senderButton.tag];
+    [[Model instance] likeAPhoto:object block:^(NSError *error) {
+        [self.tableView reloadRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationNone];
+    }];
 }
 
 -(BOOL)checkIfUserIsConnected{

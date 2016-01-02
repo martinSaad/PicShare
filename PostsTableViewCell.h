@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *hashtag;
 @property (weak, nonatomic) IBOutlet UILabel *username;
 - (IBAction)usernameBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *likeBtn;
 
 
 @end

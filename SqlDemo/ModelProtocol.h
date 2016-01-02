@@ -47,6 +47,7 @@
 -(void)uploadImage:(UIImage*)image description:(NSString*)description hashtag:(NSString*)hashtag;
 -(void)uploadProfileImage:(UIImage*)image;
 -(NSArray*)getPhotoObjects:(PFUser*)user;
+-(void)likeAPhoto:(PFObject*)photoObject;
 
 
 
