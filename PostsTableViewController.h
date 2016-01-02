@@ -22,4 +22,5 @@
 - (IBAction)likeBtnAction:(id)sender;
 - (IBAction)usernameBtnAction:(id)sender;
 -(BOOL)checkIfUserIsConnected;
+-(void)sortPhotoObjects;
 @end

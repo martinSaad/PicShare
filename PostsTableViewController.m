@@ -20,6 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.tableView addSubview:self.refreshControl];
+    [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+
+    
+    
     //if user is not logged in - skip this code
     if ([self checkIfUserIsConnected]){
         photosArr = [[NSMutableArray alloc]init];
@@ -45,12 +51,11 @@
         }
         
         //sort the photoObjects by creation date
-        NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
-        NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
-        sortedPhotosObjects = [photosArr sortedArrayUsingDescriptors:sortDescriptors];
+        [self sortPhotoObjects];
     }
     
 }
+
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -65,6 +70,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - Table view data source
 
@@ -109,6 +115,37 @@
     cell.likeBtn.tag = row;
     
     return cell;
+}
+
+
+- (void)refreshTable {
+    //empty all arrays
+    photoObjects = nil;
+    photosArr = nil;
+    sortedPhotosObjects = nil;
+    
+    photosArr = [[NSMutableArray alloc]init];
+    photoObjects = [[NSMutableArray alloc]init];
+    
+    //for each user, get an array of his photos objects (PFObject)
+    photoObjects = [[NSMutableArray alloc]init];
+    for (PFUser* user in followingUsers){
+        NSArray* objects = [[Model instance] getPhotoObjectsSync:user];
+        [photoObjects addObject:objects];
+    }
+    
+    //save all photos regardless who is the user taht created it
+    for (NSArray* arr in photoObjects){
+        for (PFObject* obj in arr){
+            [photosArr addObject:obj];
+        }
+    }
+    
+    //sort the photoObjects by creation date
+    [self sortPhotoObjects];
+    
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
 }
 
 
@@ -189,6 +226,12 @@
 -(BOOL)checkIfUserIsConnected{
     isUserLoggedIn = [[Model instance]ifUserConnecter];
     return isUserLoggedIn;
+}
+
+-(void)sortPhotoObjects{
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+    sortedPhotosObjects = [photosArr sortedArrayUsingDescriptors:sortDescriptors];
 }
 
 @end
