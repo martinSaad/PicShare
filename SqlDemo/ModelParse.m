@@ -348,17 +348,15 @@
     PFUser* user = [object objectForKey:USER];
     [user fetchIfNeeded];
     
-    NSString* firstName = user[FIRST_NAME];
-    NSString* lastName = user[LAST_NAME];
+    NSString* username = user.username;
     
-    return [NSString stringWithFormat:@"%@ %@",firstName,lastName];
+    return username;
 }
 
 -(NSString*)getUserNameFromUserObject:(PFUser *)user{
-    NSString* firstName = user[FIRST_NAME];
-    NSString* lastName = user[LAST_NAME];
+    NSString* username = user.username;
     
-    return [NSString stringWithFormat:@"%@ %@",firstName,lastName];
+    return username;
 }
 
 @end
