@@ -20,6 +20,9 @@
 -(void)followUser:(PFUser*)user;
 -(void)unFollowUser:(PFUser*)user;
 -(PFUser*)getUserFromPhotoObject:(PFObject*)object;
+-(NSArray*)getListOfUserNames;
+-(NSArray*)getListOfUsers;
+-(NSArray*)getUserName:(NSString*)prefix;
 
 //login logout
 -(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone;

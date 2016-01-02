@@ -28,6 +28,9 @@
 -(void)followUser:(PFUser*)user block:(void(^)(NSError*))block;
 -(void)unFollowUser:(PFUser*)user block:(void(^)(NSError*))block;
 -(void)getUserFromPhotoObject:(PFObject*)object block:(void(^)(PFUser*))block;
+-(void)getListOfUserNames:(void(^)(NSArray*))block;
+-(void)getListOfUsers:(void(^)(NSArray*))block;
+-(NSArray*)getUserName:(NSString*)prefix;
 
 
 

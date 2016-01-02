@@ -190,6 +190,34 @@ static Model* instance = nil;
     } );
 }
 
+-(void)getListOfUserNames:(void(^)(NSArray*))block{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        NSArray* usernames = [modelImpl getListOfUserNames];
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(usernames);
+        });
+    } );
+}
+-(void)getListOfUsers:(void(^)(NSArray*))block{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        NSArray* users = [modelImpl getListOfUsers];
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(users);
+        });
+    } );
+}
+
+-(NSArray*)getUserName:(NSString*)prefix{
+    return [modelImpl getUserName:prefix];
+}
 
 
 -(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone block:(void(^)(NSError*))block{

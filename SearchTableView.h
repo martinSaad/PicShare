@@ -1,5 +1,5 @@
 //
-//  SearchViewController.h
+//  SearchTableView.h
 //  PicShare
 //
 //  Created by Martin Saad on 02/01/2016.
@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate >{
+@interface SearchTableView : UITableViewController{
+    NSArray* users;
+    NSArray* usernames;
     NSArray* searchResults;
 }
 

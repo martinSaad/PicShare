@@ -1,5 +1,5 @@
 //
-//  SearchViewController.h
+//  test.h
 //  PicShare
 //
 //  Created by Martin Saad on 02/01/2016.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate >{
+@interface test : UITableViewController{
     NSArray* searchResults;
 }
 

@@ -359,4 +359,29 @@
     return username;
 }
 
+-(NSArray*)getListOfUserNames{
+    PFQuery *query = [PFUser query];
+    NSArray* users = [query findObjects];
+    NSMutableArray* usernames = [[NSMutableArray alloc]init];
+    for (PFUser* user in users)
+        [usernames addObject:user.username];
+    
+    return usernames;
+}
+
+-(NSArray*)getListOfUsers{
+    PFQuery *query = [PFUser query];
+    NSArray* users = [query findObjects];
+    return users;
+}
+
+-(NSArray*)getUserName:(NSString *)prefix{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"(username BEGINSWITH[cd] %@)", prefix];
+    PFQuery *query = [PFUser query];
+    query = [PFQuery queryWithClassName:USER_TABLE predicate:predicate];
+    
+    NSArray* users = [query findObjects];
+    return  users;
+}
+
 @end

@@ -299,21 +299,6 @@
             </objects>
             <point key="canvasLocation" x="-1059" y="1838"/>
         </scene>
-        <!--Activities-->
-        <scene sceneID="X1d-i7-9KI">
-            <objects>
-                <viewController id="Fkw-85-1T9" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fFM-Xc-JAo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Activities" image="Finish Flag-26.png" id="yva-sU-p46"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BrA-kf-1Oa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-424" y="1974"/>
-        </scene>
         <!--Camera-->
         <scene sceneID="oUS-vf-5a7">
             <objects>
@@ -386,33 +371,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4c-Gi-NOS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="352" y="1610"/>
-        </scene>
-        <!--Search-->
-        <scene sceneID="SOJ-k1-twG">
-            <objects>
-                <viewController id="xjj-Xy-SX5" customClass="SearchViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="0Wa-4m-UVb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UCN-vA-kGc">
-                                <rect key="frame" x="139" y="273" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Search" image="Search-25.png" id="dmU-Fy-geP"/>
-                    <connections>
-                        <outlet property="label" destination="UCN-vA-kGc" id="bW7-l4-tT9"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CAM-yA-fdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="86" y="865"/>
         </scene>
         <!--Home-->
         <scene sceneID="Wss-A1-AoB">
@@ -516,15 +474,87 @@
                     </tabBar>
                     <connections>
                         <segue destination="ORX-BW-Lxt" kind="relationship" relationship="viewControllers" id="Pat-Vf-2di"/>
-                        <segue destination="xjj-Xy-SX5" kind="relationship" relationship="viewControllers" id="3sV-QE-1IT"/>
                         <segue destination="Qum-lT-j2I" kind="relationship" relationship="viewControllers" id="7h6-iS-XYh"/>
-                        <segue destination="Fkw-85-1T9" kind="relationship" relationship="viewControllers" id="vqp-hh-VS4"/>
                         <segue destination="f7T-jH-Hvd" kind="relationship" relationship="viewControllers" id="V7x-cc-3Fc"/>
+                        <segue destination="ckz-LA-JVg" kind="relationship" relationship="viewControllers" id="1HH-Qh-mn6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56I-TS-NaW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-424" y="865"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="OM3-q8-Ug4">
+            <objects>
+                <viewController id="ckz-LA-JVg" customClass="SearchUsersViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DOz-BK-Qhj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" id="RN0-C0-Exf">
+                                <rect key="frame" x="0.0" y="25" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ckz-LA-JVg" id="u3X-si-AbP"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="77" sectionHeaderHeight="28" sectionFooterHeight="28" id="tOD-E3-7zJ">
+                                <rect key="frame" x="0.0" y="69" width="320" height="447"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="martin" rowHeight="77" id="oT4-Zc-Jzh" customClass="UsersTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="77"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oT4-Zc-Jzh" id="qcZ-Jc-Aee">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="76.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yg1-wb-E83">
+                                                    <rect key="frame" x="122" y="28" width="114" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fJy-KH-McQ">
+                                                    <rect key="frame" x="15" y="6" width="91" height="65"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="image" destination="fJy-KH-McQ" id="F8F-2W-GQg"/>
+                                            <outlet property="username" destination="Yg1-wb-E83" id="KLc-dl-S74"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ckz-LA-JVg" id="DPo-zr-lRb"/>
+                                    <outlet property="delegate" destination="ckz-LA-JVg" id="Qe2-3L-s7c"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="oOh-eR-5kP"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="gKW-mx-n0Y" id="xMO-hP-oZY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bVP-AZ-eAM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="gKW-mx-n0Y">
+                    <connections>
+                        <outlet property="delegate" destination="ckz-LA-JVg" id="oKf-KO-GuB"/>
+                        <outlet property="searchBar" destination="RN0-C0-Exf" id="0j7-d4-w7I"/>
+                        <outlet property="searchContentsController" destination="ckz-LA-JVg" id="7Nk-0D-njB"/>
+                        <outlet property="searchResultsDataSource" destination="ckz-LA-JVg" id="r1h-7d-itJ"/>
+                        <outlet property="searchResultsDelegate" destination="ckz-LA-JVg" id="GcK-Rn-Jiw"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="48" y="865"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="gjl-dm-vEA">
@@ -656,18 +686,16 @@
     <resources>
         <image name="Camera-25.png" width="25" height="25"/>
         <image name="Contacts-25.png" width="25" height="25"/>
-        <image name="Finish Flag-26.png" width="26" height="26"/>
         <image name="Home-25.png" width="25" height="25"/>
         <image name="Navigation-Hamburger-Gray2.jpg" width="250" height="239"/>
-        <image name="Search-25.png" width="25" height="25"/>
         <image name="app-launcher-150x150.png" width="150" height="150"/>
         <image name="jAXezevs_400x400.jpeg" width="400" height="400"/>
         <image name="location-icon.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jKF-Hq-XVi"/>
-        <segue reference="KL4-eO-LPW"/>
-        <segue reference="NkP-EL-V2R"/>
-        <segue reference="fEb-oG-SrW"/>
+        <segue reference="cdB-bf-rjv"/>
+        <segue reference="V7x-cc-3Fc"/>
+        <segue reference="Pat-Vf-2di"/>
     </inferredMetricsTieBreakers>
 </document>
