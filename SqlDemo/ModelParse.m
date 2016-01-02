@@ -139,6 +139,12 @@
     [photoObject save];
 }
 
+-(PFUser*)getUserFromPhotoObject:(PFObject *)object{
+    PFUser* user = [object objectForKey:USER];
+    [user fetchIfNeeded];
+    return user;
+}
+
 -(BOOL)doIFollowThisUser:(PFUser*)user{
     NSArray* following;
     PFUser* currentUser = [PFUser currentUser];

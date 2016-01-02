@@ -10,6 +10,7 @@
 #import "PostsTableViewCell.h"
 #import "LoginViewController.h"
 #import "Model.h"
+#import "ProfileViewController.h"
 @interface PostsTableViewController ()
 
 @end
@@ -167,6 +168,21 @@
     PFObject* object = [sortedPhotosObjects objectAtIndex:senderButton.tag];
     [[Model instance] likeAPhoto:object block:^(NSError *error) {
         [self.tableView reloadRowsAtIndexPaths:arr withRowAnimation:UITableViewRowAnimationNone];
+    }];
+}
+
+- (IBAction)usernameBtnAction:(id)sender {
+    UIButton *senderButton = (UIButton *)sender;
+    NSLog(@"current Row=%d",senderButton.tag);
+    
+    
+    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ProfileViewController* profileVC = [sb instantiateViewControllerWithIdentifier:@"ProfileViewController"];
+    
+    profileVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [[Model instance] getUserFromPhotoObject:[sortedPhotosObjects objectAtIndex:senderButton.tag] block:^(PFUser *user) {
+        profileVC.selectedUser = user;
+        [self showViewController:profileVC sender:self];
     }];
 }
 

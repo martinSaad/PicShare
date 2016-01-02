@@ -177,6 +177,19 @@ static Model* instance = nil;
     } );
 }
 
+-(void)getUserFromPhotoObject:(PFObject*)object block:(void(^)(PFUser*))block{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+       PFUser* user = [modelImpl getUserFromPhotoObject:object];
+        
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(user);
+        });
+    } );
+}
+
 
 
 -(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone block:(void(^)(NSError*))block{

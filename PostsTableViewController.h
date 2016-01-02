@@ -20,5 +20,6 @@
 }
 
 - (IBAction)likeBtnAction:(id)sender;
+- (IBAction)usernameBtnAction:(id)sender;
 -(BOOL)checkIfUserIsConnected;
 @end

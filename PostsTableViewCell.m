@@ -20,7 +20,5 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)usernameBtn:(id)sender {
-}
 
 @end

@@ -474,7 +474,7 @@
                                             <rect key="frame" x="12" y="12" width="139" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <connections>
-                                                <action selector="usernameBtn:" destination="gem-Pj-F7c" eventType="touchUpInside" id="Xwl-rw-1Z5"/>
+                                                <action selector="usernameBtnAction:" destination="ORX-BW-Lxt" eventType="touchUpInside" id="3W3-yr-BR2"/>
                                             </connections>
                                         </button>
                                     </subviews>

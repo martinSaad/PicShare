@@ -113,21 +113,6 @@
     
 }
 
-//// In a storyboard-based application, you will often want to do a little preparation before navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    UIImage* image = [imageView image];
-//    
-//    if(!self.isProfilePic){
-//        [[Model instance] uploadImageAsync:image description:self.disc.text hashtag:self.hashtag.text imageName:imageName block:^(NSError *error) {
-//            [self performSegueWithIdentifier:@"uploadPhotoToFeed" sender:self];
-//        }];
-//    }
-//    else{
-//        [[Model instance]uploadProfileImageAsync:image imageName:imageName block:^(NSError *error) {
-//            [self performSegueWithIdentifier:@"uploadProfilePic" sender:self];
-//        }];
-//    }
-//}
 
 - (IBAction)uploadBtn:(id)sender {
     UIImage* image = [imageView image];
