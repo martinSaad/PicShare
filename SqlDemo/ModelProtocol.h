@@ -33,7 +33,8 @@
 
 //facebook
 -(void)getFacebookUserData;
--(void)saveUserDetails:(NSString*)name withEmail:(NSString*)email withGender:(NSString*)gender withPhotoUrl:(NSURL*)photoUrl;
+-(UIImage*)saveUserDetails:(NSString*)fname lastName:(NSString*)lname withEmail:(NSString*)email withPhotoUrl:(NSURL*)photoUrl;
+-(void)facebookLogin;
 
 
 //location

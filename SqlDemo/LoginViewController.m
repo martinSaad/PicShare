@@ -22,17 +22,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES];
     // Do any additional setup after loading the view.
 }
 
-//-(void)viewDidAppear:(BOOL)animated{
-//    [super viewDidAppear:animated];
-//    PFUser* user = [PFUser currentUser];
-//    //if user is arleady logged in - skip login screen
-//    if (user){
-//        [self performSegueWithIdentifier:@"loginSeg" sender:self];
-//    }
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -40,22 +33,12 @@
 }
 
 
-
-
-
-
-
-
 - (IBAction)loginBtn:(id)sender {
     
     [[Model instance]signIn:self.userName.text andPassword:self.password.text block:^(BOOL success) {
         //if login successful
         if (success){
-            UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            MainTabBarController* mainTBVC = [sb instantiateViewControllerWithIdentifier:@"mainTabBarController"];
-            
-            mainTBVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-            [self showViewController:mainTBVC sender:self];
+            [self performSegueWithIdentifier:@"login" sender:self];
         }
         else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops.."
@@ -67,6 +50,13 @@
         }
     }];
     
+
+}
+
+- (IBAction)facebookLogin:(id)sender {
+    [[Model instance] facebookLogin:^(NSError *error) {
+        [self performSegueWithIdentifier:@"login" sender:self];
+    }];
 
 }
 @end

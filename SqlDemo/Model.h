@@ -40,6 +40,7 @@
 -(void)signIn:(NSString*)username andPassword:(NSString*)password block:(void(^)(BOOL))block;
 -(void)logOut:(void(^)(NSError*))block;
 -(BOOL)ifUserConnecter;
+-(void)facebookLogin:(void(^)(NSError*))block;
 
 
 //location

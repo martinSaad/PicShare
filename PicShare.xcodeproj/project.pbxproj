@@ -31,6 +31,7 @@
 		BF2C90EA1C2C635F00481E2A /* PostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2C90E91C2C635F00481E2A /* PostsTableViewController.m */; };
 		BF2C90ED1C2C637300481E2A /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2C90EC1C2C637300481E2A /* PostsTableViewCell.m */; };
 		BF2E83401C396EB700261B3C /* ModelSql.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2E833F1C396EB700261B3C /* ModelSql.m */; };
+		BF2E83431C3999C700261B3C /* sign-in-facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2E83421C3999C700261B3C /* sign-in-facebook.png */; };
 		BF60278B1C2C193A00A294E1 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BF60278A1C2C193A00A294E1 /* libsqlite3.tbd */; };
 		BF60278D1C2C194700A294E1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BF60278C1C2C194700A294E1 /* libz.tbd */; };
 		BF6027931C2C291100A294E1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6027921C2C291100A294E1 /* LoginViewController.m */; };
@@ -104,6 +105,7 @@
 		BF2E833E1C396EB700261B3C /* ModelSql.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSql.h; sourceTree = "<group>"; };
 		BF2E833F1C396EB700261B3C /* ModelSql.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelSql.m; sourceTree = "<group>"; };
 		BF2E83411C39757100261B3C /* ModelSqlProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSqlProtocol.h; sourceTree = "<group>"; };
+		BF2E83421C3999C700261B3C /* sign-in-facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign-in-facebook.png"; sourceTree = "<group>"; };
 		BF60278A1C2C193A00A294E1 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		BF60278C1C2C194700A294E1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		BF6027911C2C291100A294E1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 		84F2E3B91C2AB966003EAFEF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				BF2E83421C3999C700261B3C /* sign-in-facebook.png */,
 				BFD489171C3053B500979D5A /* jAXezevs_400x400.jpeg */,
 				01FDC3071C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg */,
 				01FDC3111C32CD620002A7E6 /* Camera-25.png */,
@@ -394,6 +397,7 @@
 				BFD489181C3053B500979D5A /* jAXezevs_400x400.jpeg in Resources */,
 				8405BF651C0EF019009BB9A7 /* Main.storyboard in Resources */,
 				01FDC3081C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg in Resources */,
+				BF2E83431C3999C700261B3C /* sign-in-facebook.png in Resources */,
 				01FDC3051C32C10E0002A7E6 /* location-icon.png in Resources */,
 				8405BF6A1C0EF019009BB9A7 /* LaunchScreen.xib in Resources */,
 				8405BF671C0EF019009BB9A7 /* Images.xcassets in Resources */,

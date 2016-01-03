@@ -52,20 +52,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="sign up"/>
                                 <connections>
-                                    <segue destination="gIx-zO-L3t" kind="modal" identifier="signUpSeg" id="dkJ-q2-LDG"/>
+                                    <segue destination="gIx-zO-L3t" kind="push" identifier="signUpSeg" id="dkJ-q2-LDG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Zd-dp-8xt">
+                                <rect key="frame" x="24" y="386" width="272" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="sign-in-facebook.png"/>
+                                <connections>
+                                    <action selector="facebookLogin:" destination="Iyb-7w-KBe" eventType="touchUpInside" id="RGj-sJ-BHH"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="0Ao-Mt-mkL"/>
                     <connections>
                         <outlet property="password" destination="Soe-Re-UXa" id="hbn-kc-CFL"/>
                         <outlet property="userName" destination="qga-bB-jeT" id="e8p-Iz-edr"/>
+                        <segue destination="bgt-GX-FcR" kind="modal" identifier="login" id="5pN-09-DTa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lqu-T3-onj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1379" y="1683"/>
+            <point key="canvasLocation" x="-859" y="1675"/>
         </scene>
         <!--Users Table View Controller-->
         <scene sceneID="1gI-MN-nJO">
@@ -110,7 +120,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GTj-MO-3tL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="72" y="1518"/>
+            <point key="canvasLocation" x="604" y="1518"/>
         </scene>
         <!--Profile-->
         <scene sceneID="n3y-Y4-70l">
@@ -292,12 +302,12 @@
                         <outlet property="profilePic" destination="D0P-uX-yzz" id="qdG-A5-PpY"/>
                         <outlet property="tableView" destination="enr-Ye-fBs" id="Lby-LL-hGR"/>
                         <outlet property="userName" destination="rsx-Xg-fXR" id="hFh-3t-KsZ"/>
-                        <segue destination="Iyb-7w-KBe" kind="modal" identifier="profileToLogin" id="cdB-bf-rjv"/>
+                        <segue destination="Fa3-pC-pvm" kind="modal" identifier="profileToLogin" id="cdB-bf-rjv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="152-Cu-huy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-415" y="1675"/>
+            <point key="canvasLocation" x="117" y="1675"/>
         </scene>
         <!--Camera-->
         <scene sceneID="oUS-vf-5a7">
@@ -449,7 +459,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="Home-25.png" id="HKj-YU-8yS"/>
                     <navigationItem key="navigationItem" id="UWG-7i-zck"/>
                     <connections>
-                        <segue destination="Iyb-7w-KBe" kind="modal" identifier="login" id="KL4-eO-LPW"/>
+                        <segue destination="Fa3-pC-pvm" kind="modal" identifier="login" id="KL4-eO-LPW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fpe-oj-cgf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -612,18 +622,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Agy-ep-0EB">
-                                <rect key="frame" x="93" y="40" width="134" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="login with facebook"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qFu-4k-b93">
-                                <rect key="frame" x="152" y="116" width="16" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2cp-wE-pW7">
                                 <rect key="frame" x="12" y="325" width="41" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -646,7 +644,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="lZr-kh-FGu"/>
+                    <navigationItem key="navigationItem" id="tQe-9X-kLu">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="dBT-Dx-VAs"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="email" destination="57E-qG-4H9" id="1Jk-s8-F7f"/>
                         <outlet property="firstName" destination="yWb-1d-SqY" id="dvO-Fd-c0X"/>
@@ -658,7 +658,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVF-Ac-MX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-918" y="1675"/>
+            <point key="canvasLocation" x="-386" y="1675"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TxG-I4-aJc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fa3-pC-pvm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iYX-AH-WFU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Iyb-7w-KBe" kind="relationship" relationship="rootViewController" id="0hB-ek-3lo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="irW-xB-upC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1379" y="1683"/>
         </scene>
     </scenes>
     <resources>
@@ -669,10 +687,12 @@
         <image name="app-launcher-150x150.png" width="150" height="150"/>
         <image name="jAXezevs_400x400.jpeg" width="400" height="400"/>
         <image name="location-icon.png" width="300" height="300"/>
+        <image name="sign-in-facebook.png" width="1071" height="205"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cdB-bf-rjv"/>
         <segue reference="fEb-oG-SrW"/>
+        <segue reference="5pN-09-DTa"/>
         <segue reference="NkP-EL-V2R"/>
     </inferredMetricsTieBreakers>
 </document>

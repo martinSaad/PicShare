@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "Constants.h"
+#import <ParseFacebookUtilsV4/ParseFacebookUtilsV4.h>
 
 @implementation ModelParse
 
@@ -213,38 +214,58 @@
     [fileobj save];
 }
 
--(void)saveUserDetails:(NSString*)name withEmail:(NSString*)email withGender:(NSString*)gender withPhotoUrl:(NSURL*)photoUrl{
+-(UIImage*)saveUserDetails:(NSString*)fname lastName:(NSString*)lname withEmail:(NSString*)email withPhotoUrl:(NSURL*)photoUrl{
     
     PFUser *currentUser = [PFUser currentUser];
-    NSArray* names = [name componentsSeparatedByString:@" "];
-    if (names.count == 2){
-        currentUser[@"first_name"] = [names objectAtIndex:0];
-        currentUser[@"last_name"] = [names objectAtIndex:1];
-    }
+    currentUser[@"first_name"] = fname;
+    currentUser[@"last_name"] = lname;
     currentUser[@"email"] = email;
-    currentUser[@"gender"] = gender;
+    
+    [currentUser save];
+    
+    //return image
+    UIImage * result;
+    NSData * data = [NSData dataWithContentsOfURL:photoUrl];
+    result = [UIImage imageWithData:data];
+    
+    return result;
 }
 
 - (void)getFacebookUserData {
-    // ...
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    __block UIImage* image;
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields": @"first_name, last_name, picture.type(large), email"}];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
         if (!error) {
             // result is a dictionary with the user's Facebook data
             NSDictionary *userData = (NSDictionary *)result;
             
             NSString *facebookID = userData[@"id"];
-            NSString *name = userData[@"name"];
+            NSString *firstName = userData[@"first_name"];
+            NSString *lastName = userData[@"last_name"];
             NSString *email = userData[@"email"];
-            NSString *gender = userData[@"gender"];
             
             NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
             
-            [self saveUserDetails:name withEmail:email withGender:gender withPhotoUrl:pictureURL];
+            image = [self saveUserDetails:firstName lastName:lastName withEmail:email withPhotoUrl:pictureURL];
+            
+            //upload the image to parse
+            
+            [self uploadProfileImage:image];
         }
     }];
 }
 
+-(void)facebookLogin{
+    [PFFacebookUtils logInInBackgroundWithReadPermissions:@[@"email",@"public_profile"] block:^(PFUser *user, NSError *error) {
+        if (!user) {
+            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+        } else{
+            NSLog(@"User signed up and logged in through Facebook!");
+            //profilePic = [self getFacebookUserData];
+            [self getFacebookUserData];
+        }
+    }];
+}
 
 -(NSString*)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email{
     
@@ -339,7 +360,8 @@
 
 -(BOOL)ifUserConnecter{
     PFUser* user = [PFUser currentUser];
-    if (user)
+    BOOL isLinkedToFacebook = [PFFacebookUtils isLinkedWithUser:user];
+    if (user || isLinkedToFacebook)
         return YES;
     
     return NO;

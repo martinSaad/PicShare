@@ -249,6 +249,19 @@ static Model* instance = nil;
     } );
 }
 
+-(void)facebookLogin:(void(^)(NSError*))block{
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
+    
+    dispatch_async(myQueue, ^{
+        
+        [modelImpl facebookLogin];
+        dispatch_queue_t mainQ = dispatch_get_main_queue();
+        dispatch_async(mainQ, ^{
+            block(nil);
+        });
+    } );
+}
+
 
 -(void)signIn:(NSString*)username andPassword:(NSString*)password block:(void(^)(BOOL))block{
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
@@ -305,7 +318,14 @@ static Model* instance = nil;
         [modelImpl uploadProfileImage:image];
         
         //save image localy
-        [self savingImageToFile:image fileName:imageName];
+        //if imageName is nil - the login is from facebook. name the picture as the username
+        if (imageName == nil){
+            NSString* name = [PFUser currentUser].username;
+            [self savingImageToFile:image fileName:name];
+        }
+        else{
+            [self savingImageToFile:image fileName:imageName];
+        }
         
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
