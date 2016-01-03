@@ -28,6 +28,11 @@ NSString *const EMAIL = @"email";
 NSString *const BIO = @"bio";
 NSString *const PHOTOS = @"photos";
 NSString *const PROFILE_PIC = @"profile_pic";
+NSString *const USER_NAME = @"user_name";
+
+//user sql
+NSString *const POSTS = @"posts";
+
 
 //comment
 NSString *const COMMENT = @"comment";

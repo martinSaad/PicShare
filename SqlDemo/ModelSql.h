@@ -1,19 +1,16 @@
 //
 //  ModelSql.h
-//  SqlDemo
+//  PicShare
 //
-//  Created by Admin on 12/2/15.
-//  Copyright (c) 2015 menachi. All rights reserved.
+//  Created by Martin Saad on 03/01/2016.
+//  Copyright © 2016 menachi. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
-#import "Model.h"
+#import "ModelSqlProtocol.h"
 
-@interface ModelSql : NSObject<ModelProtocol>{
+@interface ModelSql : NSObject<ModelSqlProtocol>{
     sqlite3* database;
 }
-
-
-
 @end

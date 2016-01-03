@@ -10,10 +10,11 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "ModelProtocol.h"
-
+#import "ModelSqlProtocol.h"
 
 @interface Model : NSObject{
     id<ModelProtocol> modelImpl;
+    id<ModelSqlProtocol> modelSqlImpl;
 }
 
 +(Model*)instance;
@@ -35,7 +36,7 @@
 
 
 //login logut
--(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone block:(void(^)(NSError*))block;
+-(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone block:(void(^)(NSString*))block;
 -(void)signIn:(NSString*)username andPassword:(NSString*)password block:(void(^)(BOOL))block;
 -(void)logOut:(void(^)(NSError*))block;
 -(BOOL)ifUserConnecter;

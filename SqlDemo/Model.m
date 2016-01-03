@@ -27,7 +27,7 @@ static Model* instance = nil;
 -(id)init{
     self = [super init];
     if (self) {
-        //modelImpl = [[ModelSql alloc] init];
+        //modelSqlImpl = [[ModelSql alloc] init];
         modelImpl = [[ModelParse alloc] init];
     }
     return self;
@@ -79,7 +79,13 @@ static Model* instance = nil;
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
+        //parse
         [modelImpl followUser:user];
+        
+        //sql
+        PFUser* currentUser = [PFUser currentUser];
+        [modelSqlImpl changeFollowingNumberByOne:currentUser.objectId change:YES];
+        [modelSqlImpl changeWhoFollowsMeNumberByOne:user.objectId change:YES];
         
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
@@ -91,7 +97,13 @@ static Model* instance = nil;
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
     
     dispatch_async(myQueue, ^{
+        //parse
         [modelImpl unFollowUser:user];
+        
+        //sql
+        PFUser* currentUser = [PFUser currentUser];
+        [modelSqlImpl changeFollowingNumberByOne:currentUser.objectId change:NO];
+        [modelSqlImpl changeWhoFollowsMeNumberByOne:user.objectId change:NO];
         
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
@@ -220,13 +232,16 @@ static Model* instance = nil;
 }
 
 
--(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone block:(void(^)(NSError*))block{
+-(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone block:(void(^)(NSString*))block{
     
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
 
     dispatch_async(myQueue, ^{
-        [modelImpl signUp:fName andLname:lName andUsername:username andPassword:password andEmail:email andPhone:phone];
-
+        //parse signUp
+        NSString* objectId = [modelImpl signUp:fName andLname:lName andUsername:username andPassword:password andEmail:email andPhone:phone];
+        
+        //sql signUp
+        [modelSqlImpl signUp:objectId andFname:fName andLname:lName andUsername:username andPassword:password andEmail:email andPhone:phone];
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
             block(nil);

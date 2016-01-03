@@ -53,7 +53,7 @@
     }
     
     else if([segue.identifier isEqualToString:@"signUpSecondSeg"]){
-        [[Model instance] signUp:self.firstName.text andLname:self.lastName.text andUsername:self.userName.text andPassword:self.password.text andEmail:self.userName.text andPhone:self.phone.text block:^(NSError * error) {
+        [[Model instance] signUp:self.firstName.text andLname:self.lastName.text andUsername:self.userName.text andPassword:self.password.text andEmail:self.userName.text andPhone:self.phone.text block:^(NSString * objectId) {
             
         }];
     }

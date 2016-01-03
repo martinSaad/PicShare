@@ -29,6 +29,10 @@ extern NSString *const EMAIL;
 extern NSString *const BIO;
 extern NSString *const PHOTOS;
 extern NSString *const PROFILE_PIC;
+extern NSString *const USER_NAME;
+
+//user sql
+extern NSString *const POSTS;
 
 //comment
 extern NSString *const COMMENT;

@@ -246,7 +246,7 @@
 }
 
 
--(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone {
+-(NSString*)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone {
     
     PFUser *user = [PFUser user];
     user.username = username;
@@ -258,6 +258,9 @@
     user[LAST_NAME] = lName;
     
     [user signUp];
+    
+    PFUser* currentUser = [PFUser currentUser];
+    return currentUser.objectId;
     
 }
 
