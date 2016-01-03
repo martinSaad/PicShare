@@ -232,16 +232,16 @@ static Model* instance = nil;
 }
 
 
--(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone block:(void(^)(NSString*))block{
+-(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email block:(void(^)(NSString*))block{
     
     dispatch_queue_t myQueue = dispatch_queue_create("myQueueName", NULL);
 
     dispatch_async(myQueue, ^{
         //parse signUp
-        NSString* objectId = [modelImpl signUp:fName andLname:lName andUsername:username andPassword:password andEmail:email andPhone:phone];
+        NSString* objectId = [modelImpl signUp:fName andLname:lName andUsername:username andPassword:password andEmail:email];
         
         //sql signUp
-        [modelSqlImpl signUp:objectId andFname:fName andLname:lName andUsername:username andPassword:password andEmail:email andPhone:phone];
+        [modelSqlImpl signUp:objectId andFname:fName andLname:lName andUsername:username andPassword:password andEmail:email];
         dispatch_queue_t mainQ = dispatch_get_main_queue();
         dispatch_async(mainQ, ^{
             block(nil);

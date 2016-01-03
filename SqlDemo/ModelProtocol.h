@@ -25,7 +25,7 @@
 -(NSArray*)getUserName:(NSString*)prefix;
 
 //login logout
--(NSString*)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone;
+-(NSString*)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email;
 -(BOOL)signIn:(NSString*)username andPassword:(NSString*)password;
 -(void)logOut;
 -(BOOL)ifUserConnecter;

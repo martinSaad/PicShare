@@ -10,9 +10,7 @@
 
 @protocol ModelSqlProtocol <NSObject>
 
--(void)signUp:(NSString*)objectId andFname:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone;
-
--(NSString*)getUserName:(NSString*)userObjectId;
+-(void)signUp:(NSString*)objectId andFname:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email;
 
 //change the values
 //YES - add

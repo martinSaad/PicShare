@@ -23,10 +23,6 @@ extern NSString *const OBJECT_ID;
 //user
 extern NSString *const FIRST_NAME;
 extern NSString *const LAST_NAME;
-extern NSString *const GENDER;
-extern NSString *const PHONE;
-extern NSString *const EMAIL;
-extern NSString *const BIO;
 extern NSString *const PHOTOS;
 extern NSString *const PROFILE_PIC;
 extern NSString *const USER_NAME;

@@ -35,7 +35,7 @@
         
         char* errormsg;
         
-        res = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS USER (OBJECT_ID TEXT PRIMARY KEY, FIRST_NAME TEXT, LAST_NAME TEXT, USER_NAME TEXT, EMAIL TEXT, PHONE TEXT, POSTS TEXT, FOLLOWING TEXT, WHO_FOLLOWS_ME TEXT)", NULL, NULL, &errormsg);
+        res = sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS USER (OBJECT_ID TEXT PRIMARY KEY, FIRST_NAME TEXT, LAST_NAME TEXT, USER_NAME TEXT, EMAIL TEXT, POSTS TEXT, FOLLOWING TEXT, WHO_FOLLOWS_ME TEXT)", NULL, NULL, &errormsg);
         
         if(res != SQLITE_OK){
             NSLog(@"ERROR: failed creating USERS table");
@@ -45,10 +45,10 @@
 }
 
 
--(void)signUp:(NSString*)objectId andFname:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone{
+-(void)signUp:(NSString*)objectId andFname:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email{
     
     sqlite3_stmt *statment;
-    NSString* query = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@,%@,%@,%@,%@,%@,%@,%@,%@) values (?,?,?,?,?,?,?,?,?);",@"USER",@"OBJECTID",@"FIRST_NAME",@"LAST_NAME",@"USER_NAME",@"EMAIL",@"PHONE",@"POSTS",@"FOLLOWING",@"WHO_FOLLOWS_ME"];
+    NSString* query = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@,%@,%@,%@,%@,%@,%@,%@) values (?,?,?,?,?,?,?,?);",@"USER",@"OBJECTID",@"FIRST_NAME",@"LAST_NAME",@"USER_NAME",@"EMAIL",@"POSTS",@"FOLLOWING",@"WHO_FOLLOWS_ME"];
     
     //posts,following and who_follows_me are 0
     NSString* posts = @"0";
@@ -59,10 +59,9 @@
         sqlite3_bind_text(statment, 3, [lName UTF8String],-1,NULL);
         sqlite3_bind_text(statment, 4, [username UTF8String],-1,NULL);
         sqlite3_bind_text(statment, 5, [email UTF8String],-1,NULL);
-        sqlite3_bind_text(statment, 6, [phone UTF8String],-1,NULL);
+        sqlite3_bind_text(statment, 6, [posts UTF8String],-1,NULL);
         sqlite3_bind_text(statment, 7, [posts UTF8String],-1,NULL);
         sqlite3_bind_text(statment, 8, [posts UTF8String],-1,NULL);
-        sqlite3_bind_text(statment, 9, [posts UTF8String],-1,NULL);
         if(sqlite3_step(statment) == SQLITE_DONE){
             return;
         }

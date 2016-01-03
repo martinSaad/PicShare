@@ -36,7 +36,7 @@
 
 
 //login logut
--(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone block:(void(^)(NSString*))block;
+-(void)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email block:(void(^)(NSString*))block;
 -(void)signIn:(NSString*)username andPassword:(NSString*)password block:(void(^)(BOOL))block;
 -(void)logOut:(void(^)(NSError*))block;
 -(BOOL)ifUserConnecter;

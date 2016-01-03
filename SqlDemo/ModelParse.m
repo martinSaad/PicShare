@@ -246,14 +246,13 @@
 }
 
 
--(NSString*)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email andPhone:(NSString*)phone {
+-(NSString*)signUp:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email{
     
     PFUser *user = [PFUser user];
     user.username = username;
     user.password = password;
     user.email = email;
     
-    user[PHONE] = phone;
     user[FIRST_NAME] = fName;
     user[LAST_NAME] = lName;
     
@@ -291,7 +290,6 @@
     PFFile *imageFile = [PFFile fileWithName:description data:imageData];
     
     PFObject *userPhoto = [PFObject objectWithClassName:PHOTO_TABLE];
-    //userPhoto[USER] = [PFUser currentUser];
     [userPhoto setObject:[PFUser currentUser] forKey:USER];
     userPhoto[PICTURE] = imageFile;
     userPhoto[DESCRIPTION] = description;

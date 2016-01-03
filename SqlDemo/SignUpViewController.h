@@ -12,9 +12,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *userName;
 @property (weak, nonatomic) IBOutlet UITextField *firstName;
 @property (weak, nonatomic) IBOutlet UITextField *password;
-@property (weak, nonatomic) IBOutlet UITextField *phone;
-@property (weak, nonatomic) IBOutlet UITextField *gender;
+
 @property (weak, nonatomic) IBOutlet UITextField *lastName;
 - (IBAction)signUp:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *email;
 
 @end
