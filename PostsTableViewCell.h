@@ -13,8 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *likes;
 @property (weak, nonatomic) IBOutlet UILabel *descri;
 @property (weak, nonatomic) IBOutlet UILabel *hashtag;
-@property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet UIButton *likeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *username;
 
 
 @end

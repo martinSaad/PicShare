@@ -421,18 +421,12 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tkx-tb-DfV">
-                                            <rect key="frame" x="12" y="16" width="139" height="21"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XpN-bx-zxQ">
+                                            <rect key="frame" x="8" y="13" width="68" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jm6-pc-wIp">
-                                            <rect key="frame" x="12" y="12" width="139" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="username"/>
                                             <connections>
-                                                <action selector="usernameBtnAction:" destination="ORX-BW-Lxt" eventType="touchUpInside" id="3W3-yr-BR2"/>
+                                                <action selector="usernameBtnAction:" destination="ORX-BW-Lxt" eventType="touchUpInside" id="L8S-DH-NP7"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -443,7 +437,7 @@
                                     <outlet property="likeBtn" destination="UNH-9b-aMl" id="9Jw-Ug-n3d"/>
                                     <outlet property="likes" destination="r2R-PG-Lbw" id="6PB-E3-2Md"/>
                                     <outlet property="postImageView" destination="cCN-Yp-H13" id="XeV-LM-gow"/>
-                                    <outlet property="username" destination="Tkx-tb-DfV" id="lI6-47-ok8"/>
+                                    <outlet property="username" destination="XpN-bx-zxQ" id="zfO-oR-nlk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -597,7 +591,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="sign up"/>
                                 <connections>
-                                    <segue destination="bgt-GX-FcR" kind="modal" identifier="signUpSecondSeg" id="jKF-Hq-XVi"/>
+                                    <action selector="signUp:" destination="gIx-zO-L3t" eventType="touchUpInside" id="tGh-jc-rS2"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="0GY-hk-Qcp">
@@ -654,9 +648,6 @@
                                 <rect key="frame" x="93" y="40" width="134" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="login with facebook"/>
-                                <connections>
-                                    <segue destination="bgt-GX-FcR" kind="modal" identifier="facebookLoginSeg" id="A2q-1r-0cU"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qFu-4k-b93">
                                 <rect key="frame" x="152" y="116" width="16" height="21"/>
@@ -676,6 +667,7 @@
                         <outlet property="password" destination="lOI-0e-4uU" id="nAR-yX-Syx"/>
                         <outlet property="phone" destination="KFq-dX-11a" id="bWX-xj-UyI"/>
                         <outlet property="userName" destination="0GY-hk-Qcp" id="yVC-cW-gIe"/>
+                        <segue destination="bgt-GX-FcR" kind="modal" identifier="signUpSecondSeg" id="0Ml-Cm-cva"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PVF-Ac-MX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -693,9 +685,8 @@
         <image name="location-icon.png" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jKF-Hq-XVi"/>
-        <segue reference="cdB-bf-rjv"/>
-        <segue reference="V7x-cc-3Fc"/>
+        <segue reference="KL4-eO-LPW"/>
         <segue reference="Pat-Vf-2di"/>
+        <segue reference="V7x-cc-3Fc"/>
     </inferredMetricsTieBreakers>
 </document>

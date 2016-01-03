@@ -109,11 +109,11 @@
     
     //set username
     [[Model instance] getUserNameFromObject:object block:^(NSString *name) {
-        cell.username.text = name;
+        [cell.username setTitle:name forState:UIControlStateNormal];
     }];
     
     cell.likeBtn.tag = row;
-    
+    cell.username.tag = row;
     return cell;
 }
 

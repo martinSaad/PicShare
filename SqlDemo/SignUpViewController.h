@@ -15,6 +15,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *phone;
 @property (weak, nonatomic) IBOutlet UITextField *gender;
 @property (weak, nonatomic) IBOutlet UITextField *lastName;
+- (IBAction)signUp:(id)sender;
 
--(void)signUp;
 @end
