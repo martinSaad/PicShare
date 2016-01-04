@@ -48,7 +48,7 @@
 -(void)signUp:(NSString*)objectId andFname:(NSString*)fName andLname:(NSString*)lName andUsername:(NSString*)username andPassword:(NSString*)password andEmail:(NSString*)email{
     
     sqlite3_stmt *statment;
-    NSString* query = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@,%@,%@,%@,%@,%@,%@,%@) values (?,?,?,?,?,?,?,?);",@"USER",@"OBJECTID",@"FIRST_NAME",@"LAST_NAME",@"USER_NAME",@"EMAIL",@"POSTS",@"FOLLOWING",@"WHO_FOLLOWS_ME"];
+    NSString* query = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (%@,%@,%@,%@,%@,%@,%@,%@) values (?,?,?,?,?,?,?,?);",@"USER",@"OBJECT_ID",@"FIRST_NAME",@"LAST_NAME",@"USER_NAME",@"EMAIL",@"POSTS",@"FOLLOWING",@"WHO_FOLLOWS_ME"];
     
     //posts,following and who_follows_me are 0
     NSString* posts = @"0";

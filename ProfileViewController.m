@@ -42,7 +42,7 @@
         self.followingOrNot.hidden = YES;
         
         //set the user name.
-        [self.usernameLabel setTitle:[[Model instance] getCurrentUser] forState:UIControlStateNormal];
+        [self.uernameLabel setTitle:[[Model instance] getCurrentUser] forState:UIControlStateNormal];
         user = [PFUser currentUser];
         
         photosArr = [[Model instance] getPhotoObjectsSync:user];
@@ -54,14 +54,15 @@
         sortedPhotosObjects = [photosArr sortedArrayUsingDescriptors:sortDescriptors];
         
         //setting number of posts,following,follwers
-        self.postsNumber.text = [NSString stringWithFormat:@"%d", [sortedPhotosObjects count]];
+        self.postsNumber.text = [NSString stringWithFormat:@"%lu", (unsigned long)[sortedPhotosObjects count]];
         
         [[Model instance] getFollowingUsersAsync:user block:^(NSArray *following) {
-            self.followNumber.text = [NSString stringWithFormat:@"%d",[following count]];
+            self.followingNumber.text = [NSString stringWithFormat:@"%lu",(unsigned long)[following count]];
+            
         }];
         
         [[Model instance] getWhoFollowsMeAsync:user block:^(NSArray *whoFollowingMe) {
-            self.followingNumber.text = [NSString stringWithFormat:@"%d",[whoFollowingMe count]];
+            self.followingNumber.text = [NSString stringWithFormat:@"%lu",(unsigned long)[whoFollowingMe count]];
         }];
     }
     
@@ -81,7 +82,7 @@
         
         //set username
         [[Model instance]getUserNameFromUserObject:self.selectedUser block:^(NSString *name) {
-            [self.usernameLabel setTitle:name forState:UIControlStateNormal];
+            [self.uernameLabel setTitle:name forState:UIControlStateNormal];
         }];
         
         photosArr = [[Model instance] getPhotoObjectsSync:self.selectedUser];
@@ -93,20 +94,28 @@
         sortedPhotosObjects = [photosArr sortedArrayUsingDescriptors:sortDescriptors];
         
         //setting number of posts,following,follwers
-        self.postsNumber.text = [NSString stringWithFormat:@"%d", [sortedPhotosObjects count]];
+        self.postsNumber.text = [NSString stringWithFormat:@"%lu", (unsigned long)[sortedPhotosObjects count]];
         
         [[Model instance] getFollowingUsersAsync:self.selectedUser block:^(NSArray *following) {
-            self.followNumber.text = [NSString stringWithFormat:@"%d",[following count]];
+            self.followNumber.text = [NSString stringWithFormat:@"%lu",(unsigned long)[following count]];
         }];
         
         [[Model instance] getWhoFollowsMeAsync:self.selectedUser block:^(NSArray *whoFollowingMe) {
-            self.followingNumber.text = [NSString stringWithFormat:@"%d",[whoFollowingMe count]];
+            self.followingNumber.text = [NSString stringWithFormat:@"%lu",(unsigned long)[whoFollowingMe count]];
         }];
     }
     
 
 }
 
+//if this controller is poped from camera
+//meaning the user try to change his profile pic
+//reload profile pic
+-(void)viewDidAppear:(BOOL)animated{
+    [[Model instance] getProfilePicAsync:^(UIImage *pic) {
+        self.profilePic.image = pic;
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -164,7 +173,6 @@
     usersVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [[Model instance]getFollowingUsersAsync:user block:^(NSArray *followingUsers) {
         usersVC.users = followingUsers;
-        //[self.navigationController pushViewController:usersVC animated:YES];
         [self showViewController:usersVC sender:self];
     }];
     
@@ -177,7 +185,6 @@
     usersVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [[Model instance] getWhoFollowsMeAsync:user block:^(NSArray *whoFollowsMe) {
         usersVC.users = whoFollowsMe;
-        //[self.navigationController pushViewController:usersVC animated:YES];
         [self showViewController:usersVC sender:self];
     }];
 }
@@ -248,6 +255,7 @@
 }
 - (IBAction)username:(id)sender {
 }
+
 @end
 
 

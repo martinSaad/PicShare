@@ -27,7 +27,7 @@ static Model* instance = nil;
 -(id)init{
     self = [super init];
     if (self) {
-        //modelSqlImpl = [[ModelSql alloc] init];
+        modelSqlImpl = [[ModelSql alloc] init];
         modelImpl = [[ModelParse alloc] init];
     }
     return self;

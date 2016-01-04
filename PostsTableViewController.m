@@ -64,6 +64,9 @@
     if (!isUserLoggedIn){
         [self performSegueWithIdentifier:@"login" sender:self];
     }
+    
+    //if user try to upload new photo - refresh table view
+    [self viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -124,7 +124,7 @@
     }
     else{
         [[Model instance]uploadProfileImageAsync:image imageName:imageName block:^(NSError *error) {
-            [self performSegueWithIdentifier:@"uploadProfilePic" sender:self];
+            [self.navigationController popViewControllerAnimated:YES];
         }];
     }
 }

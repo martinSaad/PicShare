@@ -10,6 +10,9 @@
 
 @interface SearchUsersViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate >{
     NSArray* searchResults;
+    NSArray* users;
+    NSArray* usernames;
 }
+@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end
