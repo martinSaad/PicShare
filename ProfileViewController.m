@@ -29,8 +29,10 @@
     //set the profile pic in a circle.
     self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
     self.profilePic.clipsToBounds = YES;
-
+    
+    //showing my profile
     if (self.selectedUser == nil){
+        
         //set profile pic
         [[Model instance] getProfilePicAsync:^(UIImage *pic) {
             self.profilePic.image = pic;
@@ -40,7 +42,7 @@
         self.followingOrNot.hidden = YES;
         
         //set the user name.
-        self.userName.text = [[Model instance] getCurrentUser];
+        [self.usernameLabel setTitle:[[Model instance] getCurrentUser] forState:UIControlStateNormal];
         user = [PFUser currentUser];
         
         photosArr = [[Model instance] getPhotoObjectsSync:user];
@@ -79,7 +81,7 @@
         
         //set username
         [[Model instance]getUserNameFromUserObject:self.selectedUser block:^(NSString *name) {
-            self.userName.text = name;
+            [self.usernameLabel setTitle:name forState:UIControlStateNormal];
         }];
         
         photosArr = [[Model instance] getPhotoObjectsSync:self.selectedUser];
@@ -243,6 +245,8 @@
             }];
         }];
     }
+}
+- (IBAction)username:(id)sender {
 }
 @end
 

@@ -19,8 +19,9 @@
     NSArray* likes;
     PFUser* user;
 }
+@property (weak, nonatomic) IBOutlet UIButton *usernameLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *userName;
+- (IBAction)username:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *posts;
 - (IBAction)followBtn:(id)sender;
 - (IBAction)followingBtn:(id)sender;
