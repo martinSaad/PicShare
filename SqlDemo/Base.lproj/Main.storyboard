@@ -91,10 +91,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellUsers" rowHeight="58" id="6x0-7E-4Y5" customClass="UsersTableViewCell">
-                                <rect key="frame" x="0.0" y="28" width="600" height="58"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6x0-7E-4Y5" id="SiY-dh-s8z">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="57"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2hM-hc-DJc">
@@ -651,7 +651,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="P8k-Vq-jbm">
-                                <rect key="frame" x="104" y="490" width="108" height="48"/>
+                                <rect key="frame" x="118" y="502" width="85" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="sign up" image="signup_button.png"/>
                                 <connections>
@@ -775,9 +775,9 @@
         <image name="signup_button.png" width="1708" height="590"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pat-Vf-2di"/>
+        <segue reference="fEb-oG-SrW"/>
         <segue reference="0Ml-Cm-cva"/>
         <segue reference="cdB-bf-rjv"/>
-        <segue reference="fEb-oG-SrW"/>
+        <segue reference="NkP-EL-V2R"/>
     </inferredMetricsTieBreakers>
 </document>

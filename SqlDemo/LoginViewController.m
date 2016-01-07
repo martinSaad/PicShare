@@ -21,6 +21,7 @@
 @implementation LoginViewController
 
 - (void)viewDidLoad {
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES];
     // Do any additional setup after loading the view.

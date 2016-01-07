@@ -19,6 +19,7 @@
 @implementation SignUpViewController
 
 - (void)viewDidLoad {
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
     // Do any additional setup after loading the view.

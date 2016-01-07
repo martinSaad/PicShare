@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01B49B5C1C3E6D2D00279273 /* PicShareLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B49B5B1C3E6D2D00279273 /* PicShareLogo.png */; settings = {ASSET_TAGS = (); }; };
+		01B49B5E1C3E780700279273 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01B49B5D1C3E780700279273 /* background.jpg */; settings = {ASSET_TAGS = (); }; };
 		01FDC3051C32C10E0002A7E6 /* location-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01FDC3031C32C10E0002A7E6 /* location-icon.png */; };
 		01FDC3061C32C10E0002A7E6 /* app-launcher-150x150.png in Resources */ = {isa = PBXBuildFile; fileRef = 01FDC3041C32C10E0002A7E6 /* app-launcher-150x150.png */; };
 		01FDC3081C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01FDC3071C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg */; };
@@ -71,6 +72,7 @@
 
 /* Begin PBXFileReference section */
 		01B49B5B1C3E6D2D00279273 /* PicShareLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PicShareLogo.png; sourceTree = "<group>"; };
+		01B49B5D1C3E780700279273 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		01FDC3031C32C10E0002A7E6 /* location-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-icon.png"; sourceTree = "<group>"; };
 		01FDC3041C32C10E0002A7E6 /* app-launcher-150x150.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-launcher-150x150.png"; sourceTree = "<group>"; };
 		01FDC3071C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Navigation-Hamburger-Gray2.jpg"; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				BF2E83661C3A781B00261B3C /* Contacts.png */,
 				01B49B5B1C3E6D2D00279273 /* PicShareLogo.png */,
 				BF2E83591C3A729200261B3C /* login_button.png */,
+				01B49B5D1C3E780700279273 /* background.jpg */,
 				BF2E835B1C3A730200261B3C /* signup_button.png */,
 				01FDC3031C32C10E0002A7E6 /* location-icon.png */,
 				01FDC3041C32C10E0002A7E6 /* app-launcher-150x150.png */,
@@ -414,6 +417,7 @@
 				BF2E83681C3A781B00261B3C /* Camera.png in Resources */,
 				BF2E83691C3A781B00261B3C /* Home.png in Resources */,
 				01FDC3061C32C10E0002A7E6 /* app-launcher-150x150.png in Resources */,
+				01B49B5E1C3E780700279273 /* background.jpg in Resources */,
 				BF2E836A1C3A781B00261B3C /* Contacts.png in Resources */,
 				BF2E83541C3A6A6C00261B3C /* likeBtn.png in Resources */,
 			);
