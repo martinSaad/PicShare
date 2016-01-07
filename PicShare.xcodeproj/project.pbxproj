@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01B49B5C1C3E6D2D00279273 /* PicShareLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 01B49B5B1C3E6D2D00279273 /* PicShareLogo.png */; settings = {ASSET_TAGS = (); }; };
 		01FDC3051C32C10E0002A7E6 /* location-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01FDC3031C32C10E0002A7E6 /* location-icon.png */; };
 		01FDC3061C32C10E0002A7E6 /* app-launcher-150x150.png in Resources */ = {isa = PBXBuildFile; fileRef = 01FDC3041C32C10E0002A7E6 /* app-launcher-150x150.png */; };
 		01FDC3081C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01FDC3071C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg */; };
@@ -32,7 +33,6 @@
 		BF2C90ED1C2C637300481E2A /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2C90EC1C2C637300481E2A /* PostsTableViewCell.m */; };
 		BF2E83401C396EB700261B3C /* ModelSql.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2E833F1C396EB700261B3C /* ModelSql.m */; };
 		BF2E83431C3999C700261B3C /* sign-in-facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2E83421C3999C700261B3C /* sign-in-facebook.png */; };
-		BF2E83521C3A681600261B3C /* PicShare-1.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2E83511C3A681600261B3C /* PicShare-1.png */; };
 		BF2E83541C3A6A6C00261B3C /* likeBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2E83531C3A6A6C00261B3C /* likeBtn.png */; };
 		BF2E835A1C3A729200261B3C /* login_button.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2E83591C3A729200261B3C /* login_button.png */; };
 		BF2E835C1C3A730200261B3C /* signup_button.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2E835B1C3A730200261B3C /* signup_button.png */; };
@@ -70,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01B49B5B1C3E6D2D00279273 /* PicShareLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PicShareLogo.png; sourceTree = "<group>"; };
 		01FDC3031C32C10E0002A7E6 /* location-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-icon.png"; sourceTree = "<group>"; };
 		01FDC3041C32C10E0002A7E6 /* app-launcher-150x150.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app-launcher-150x150.png"; sourceTree = "<group>"; };
 		01FDC3071C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Navigation-Hamburger-Gray2.jpg"; sourceTree = "<group>"; };
@@ -106,7 +107,6 @@
 		BF2E833F1C396EB700261B3C /* ModelSql.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelSql.m; sourceTree = "<group>"; };
 		BF2E83411C39757100261B3C /* ModelSqlProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSqlProtocol.h; sourceTree = "<group>"; };
 		BF2E83421C3999C700261B3C /* sign-in-facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign-in-facebook.png"; sourceTree = "<group>"; };
-		BF2E83511C3A681600261B3C /* PicShare-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PicShare-1.png"; sourceTree = "<group>"; };
 		BF2E83531C3A6A6C00261B3C /* likeBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = likeBtn.png; sourceTree = "<group>"; };
 		BF2E83591C3A729200261B3C /* login_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_button.png; sourceTree = "<group>"; };
 		BF2E835B1C3A730200261B3C /* signup_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signup_button.png; sourceTree = "<group>"; };
@@ -286,9 +286,9 @@
 				BF2E83641C3A781B00261B3C /* Camera.png */,
 				BF2E83651C3A781B00261B3C /* Home.png */,
 				BF2E83661C3A781B00261B3C /* Contacts.png */,
+				01B49B5B1C3E6D2D00279273 /* PicShareLogo.png */,
 				BF2E83591C3A729200261B3C /* login_button.png */,
 				BF2E835B1C3A730200261B3C /* signup_button.png */,
-				BF2E83511C3A681600261B3C /* PicShare-1.png */,
 				01FDC3031C32C10E0002A7E6 /* location-icon.png */,
 				01FDC3041C32C10E0002A7E6 /* app-launcher-150x150.png */,
 			);
@@ -403,6 +403,7 @@
 			files = (
 				BF2E835A1C3A729200261B3C /* login_button.png in Resources */,
 				8405BF651C0EF019009BB9A7 /* Main.storyboard in Resources */,
+				01B49B5C1C3E6D2D00279273 /* PicShareLogo.png in Resources */,
 				01FDC3081C32C1F30002A7E6 /* Navigation-Hamburger-Gray2.jpg in Resources */,
 				BF2E83431C3999C700261B3C /* sign-in-facebook.png in Resources */,
 				01FDC3051C32C10E0002A7E6 /* location-icon.png in Resources */,
@@ -411,7 +412,6 @@
 				BF2E83671C3A781B00261B3C /* Search.png in Resources */,
 				8405BF671C0EF019009BB9A7 /* Images.xcassets in Resources */,
 				BF2E83681C3A781B00261B3C /* Camera.png in Resources */,
-				BF2E83521C3A681600261B3C /* PicShare-1.png in Resources */,
 				BF2E83691C3A781B00261B3C /* Home.png in Resources */,
 				01FDC3061C32C10E0002A7E6 /* app-launcher-150x150.png in Resources */,
 				BF2E836A1C3A781B00261B3C /* Contacts.png in Resources */,
